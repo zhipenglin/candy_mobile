@@ -1,0 +1,6 @@
+{
+  "presets": [
+    "react","latest","stage-1","stage-3"
+  ],
+  "plugins": ["transform-runtime","transform-decorators-legacy"]
+}

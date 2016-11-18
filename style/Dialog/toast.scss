@@ -1,0 +1,55 @@
+@import "../name-space";
+
+.#{$toast}{
+  &__inner{
+    position: absolute;
+    left: 50%;
+    top:40%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(40, 40, 40, 0.75);
+    border-radius: 20px;
+    color:#fff;
+    width: 300px;
+    min-height: 300px;
+  }
+  &__icon{
+    &:after{
+      content:'';
+      display: block;
+      width: 120px;
+      height:120px;
+      margin: 50px auto 40px auto;
+      background-size: 120px 120px;
+    }
+    &--error:after{
+      background-image: url("../svg/warning.svg");
+    }
+    &--success:after{
+      background-image: url("../svg/right.svg");
+    }
+    &--loading:after{
+      @keyframes loading {
+        0%{
+          transform:rotate(0deg);
+        }
+        100%{
+          transform:rotate(360deg);
+        }
+      }
+      animation: loading 1s steps(12, end) infinite;
+      background-size: 80px 80px;
+      width: 80px;
+      height:80px;
+      margin-top: 80px;
+      background-image: url("../svg/loading.svg");
+    }
+  }
+  &__content{
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  &:before{
+    background-color: transparent;
+  }
+}

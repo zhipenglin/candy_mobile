@@ -1,0 +1,36 @@
+@import "../name-space";
+
+.#{$button}{
+  width: 100%;
+  margin:20px auto;
+  line-height:100px;
+  height: 100px;
+  text-align: center;
+  display:block;
+  text-decoration:none;
+  &:hover{
+    text-decoration:none;
+  }
+  border-radius:10px;
+  font-size: 36px;
+  color:#666;
+  background-color:#f0f0f0;
+  transition: background-color 0.5s,color 0.5s;
+  &--primary{
+    background-color:#ff8831;
+    color:#fff;
+  }
+  &--ghost{
+    color:#ff8831;
+    background-color:transparent;
+  }
+  &--disabled{
+    color: #ccc;
+    background-color: #f7f7f7;
+    &.#{$button}--primary{
+      background-color:#ffae72;
+      color:#fff;
+    }
+  }
+}
+

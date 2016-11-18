@@ -1,0 +1,10 @@
+@import "../name-space";
+
+.#{$input},.#{$pass-word}{
+  border: none;
+  padding: 30px 6px;
+  font-size: 30px;
+  width: 100%;
+  background: transparent;
+  line-height:40px;
+}
