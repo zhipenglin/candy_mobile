@@ -43,7 +43,6 @@ export default class Form extends Component{
         onChange(this.data);
     }
     validateField=debounce(async (key,value)=>{
-        console.log(key+'执行校验');
         let field=this.fields[key];
         if(field.rule){
             let isRequired,length,type=[],rule=field.rule.split(' ').filter((n)=>n);
