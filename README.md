@@ -1,2 +1,2 @@
-# react-bole
-基于react开发的个人博客
+# candy-mobile
+移动端UI组件库
