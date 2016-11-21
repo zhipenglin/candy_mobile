@@ -17,7 +17,7 @@ export default class Form extends Component{
             des:'%s可以包含数字或字母，但不可全为数字'
         }
     }
-    static defaultTypes={
+    static defaultProps={
         onChange:()=>{}
     }
     constructor(){
