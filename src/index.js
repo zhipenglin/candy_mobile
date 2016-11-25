@@ -6,6 +6,7 @@ export Toast from './Dialog/Toast'
 export autoPrefix from './fn/autoPrefixer'
 export dom from './fn/dom'
 export fetch from './fn/fetch'
+
 export transitions from './fn/transitions'
 
 export Form from './Form'
@@ -16,6 +17,8 @@ export PassWord from './Form/PassWord'
 export SubmitButton from './Form/SubmitButton'
 
 export layer from './higherOrder/layer'
+
+export Pull from './Pull'
 
 export Wave from './Wave'
 

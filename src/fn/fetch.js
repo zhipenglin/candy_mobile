@@ -2,7 +2,7 @@
  * Created by ifchangetoclzp on 2016/11/9.
  */
 import Toast from '../Dialog/Toast'
-export function serialize(data){
+function serialize(data){
     var temp=[];
     for(let key in data){
         if(data.hasOwnProperty(key)){
@@ -12,7 +12,7 @@ export function serialize(data){
     return temp.join('&');
 }
 
-export function deserialize(str){
+function deserialize(str){
     var temp=str.split('&');
     var data={};
     for(let index=0;index<temp.length;index++){
@@ -22,17 +22,23 @@ export function deserialize(str){
     return data;
 }
 
-export function resolveURL(url){
+function resolveURL(url){
     var org=url||location.href;
 
-    var [,path,param]=org.match(/(.*)\?(.*)/);
+    var [path,param]=org.split('?');
+    if(!param){
+        param='';
+    }
     var [search,hash]=param.split('#');
+    if(!hash){
+        hash='';
+    }
     return {
         path,search,hash
     }
 }
 
-export default function(url,...arg){
+function fetch(url,...arg){
     var errorCatch=true,url=resolveURL(url),options={type:'GET',data:{},dataType:'json'};
     if(typeof arg[0]=='object'){
         Object.assign(options,arg[0]);
@@ -77,7 +83,7 @@ export default function(url,...arg){
             if(res.err_no==0){
                 return {
                     status:true,
-                    data:res.data
+                    data:res.results
                 };
             }else{
                 if(errorCatch){
@@ -104,3 +110,9 @@ export default function(url,...arg){
         }
     });
 }
+
+fetch.serialize=serialize;
+fetch.deserialize=deserialize;
+fetch.resolveURL=resolveURL;
+
+export default fetch;

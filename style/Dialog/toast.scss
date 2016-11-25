@@ -1,4 +1,5 @@
 @import "../name-space";
+@import "../animate";
 
 .#{$toast}{
   &__inner{
@@ -28,14 +29,6 @@
       background-image: url("../svg/right.svg");
     }
     &--loading:after{
-      @keyframes loading {
-        0%{
-          transform:rotate(0deg);
-        }
-        100%{
-          transform:rotate(360deg);
-        }
-      }
       animation: loading 1s steps(12, end) infinite;
       background-size: 80px 80px;
       width: 80px;
