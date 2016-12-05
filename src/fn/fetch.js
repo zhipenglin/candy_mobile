@@ -2,6 +2,13 @@
  * Created by ifchangetoclzp on 2016/11/9.
  */
 import Toast from '../Dialog/Toast'
+
+var timeout=10000;
+
+function setTime(time){
+    timeout=time;
+}
+
 function serialize(data){
     var temp=[];
     for(let key in data){
@@ -38,6 +45,18 @@ function resolveURL(url){
     }
 }
 
+function join(...args){
+    var url=[];
+    args.forEach(n=>{
+        url=url.concat(n.split('/'));
+    });
+    var res=url.filter(n=>n).join('/');
+    if(!/^.*\..*/.test(res)){
+        res='/'+res;
+    }
+    return res;
+}
+
 function fetch(url,...arg){
     var errorCatch=true,url=resolveURL(url),options={type:'GET',data:{},dataType:'json'};
     if(typeof arg[0]=='object'){
@@ -53,18 +72,23 @@ function fetch(url,...arg){
     var xhr=new window.XMLHttpRequest();
 
     if(/^get$/i.test(options.type)){
-        xhr.open('GET','/api/'+url.path+'?'+serialize(Object.assign(deserialize(url.search),options.data)),true);
+        xhr.open('GET',join('api',url.path)+'?'+serialize(Object.assign(deserialize(url.search),options.data)),true);
         xhr.send();
     }else{
-        xhr.open(options.type,'/api/'+url.path,true);
+        xhr.open(options.type,join('api',url.path),true);
         var content=serialize(options.data);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.send(content);
     }
     return new Promise((resolve,reject)=>{
+        var timer=setTimeout(()=>{
+            xhr.abort();
+            reject('请求超时');
+        },timeout);
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4) {
                 if (xhr.status == 200) {
+                    clearTimeout(timer);
                     resolve(xhr.responseText);
                 }else{
                     reject(xhr.status);
@@ -100,6 +124,9 @@ function fetch(url,...arg){
         return res;
     }).catch((res)=>{
         let msg='请求异常，请刷新后重试';
+        if(typeof res=='string'){
+            msg=res;
+        }
         if(errorCatch){
             new Toast(msg);
         }
@@ -114,5 +141,7 @@ function fetch(url,...arg){
 fetch.serialize=serialize;
 fetch.deserialize=deserialize;
 fetch.resolveURL=resolveURL;
+fetch.join=join;
+fetch.setTime=setTime;
 
 export default fetch;
