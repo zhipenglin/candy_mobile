@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "page":"node page.publish.js"
+    "page": "node page.publish.js"
   },
   "author": "linzp",
   "license": "ISC",
@@ -27,7 +27,6 @@
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.16.0",
-    "babel-preset-stage-3": "^6.17.0",
-    "gh-pages": "^0.12.0"
+    "babel-preset-stage-3": "^6.17.0"
   }
 }
