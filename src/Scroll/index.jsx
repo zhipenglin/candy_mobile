@@ -95,6 +95,9 @@ export default class Scroll extends Component{
             step();
         }
     }
+    touchStartHandler=(e)=>{
+        e.preventDefault();
+    }
     animate(time=50){
         const style = this.refs.inner.style;
         autoPrefix(style, 'transition', `transform ${time}ms`);
@@ -107,7 +110,7 @@ export default class Scroll extends Component{
         const {className,style,children,onScroll,onMove,onScrollEnd,onReachTop,onReachBottom,...reset}=this.props;
         return (
             <div className={classnames('candy-mob-scroll',className)} style={Object.assign({},style,{height:`${this.state.height}px`})} {...reset}>
-                <Touch onPressMove={this._moveHandler} onTouchEnd={this._endHandler}>
+                <Touch onPressMove={this._moveHandler} onTouchStart={this.touchStartHandler} onTouchEnd={this._endHandler}>
                     <div className="candy-mob-sroll__inner" ref="inner" style={{transform:`translateY(${this.state.deltaY}px)`}}>
                         {children}
                     </div>
