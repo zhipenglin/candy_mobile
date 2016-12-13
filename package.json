@@ -4,7 +4,9 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "babel src -d lib&&cross-env NODE_ENV=production webpack --progress --profile --colors",
+    "babel": "babel src -d lib",
+    "webpack": "cross-env NODE_ENV=production webpack --progress --profile --colors",
     "page": "node page.publish.js"
   },
   "author": "linzp",
@@ -20,13 +22,29 @@
     "react-dom": "^15.4.0"
   },
   "devDependencies": {
+    "autoprefixer": "^6.4.0",
+    "autoprefixer-loader": "^3.2.0",
     "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.9",
     "babel-plugin-react-transform": "^2.0.2",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "^6.12.0",
     "babel-preset-latest": "^6.16.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-1": "^6.16.0",
-    "babel-preset-stage-3": "^6.17.0"
+    "babel-preset-stage-3": "^6.17.0",
+    "cross-env": "^3.1.3",
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.9.0",
+    "inline-style-prefixer": "^2.0.5",
+    "node-sass": "^4.0.0",
+    "px2rem": "^0.5.0",
+    "px2rem-loader": "^0.1.7",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0"
   }
 }

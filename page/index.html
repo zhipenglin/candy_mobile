@@ -3,8 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>candy-mobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+    <div class="page-root">
+        <div class="page-l-header">
+            <div class="pager-l-header__left s-menu"><i></i></div>
+            <div class="pager-l-header__right"></div>
+            <div class="pager-l-header__center">candy-mobile主页</div>
+        </div>
+        <div class="page-l-menu s-menu-content">
+            <div class="page-l-menu__cover s-menu-cover"></div>
+            <div class="page-l-menu__inner">
+                <div class="page-l-menu__header"><i></i><span>candy mobile</span></div>
+                <ul>
+                    <li><a class="s-link active" data-href="index">首页</a></li>
+                    <li><a class="s-link" data-href="button">按钮</a></li>
+                    <li><a class="s-link" data-href="dialog">对话框</a></li>
+                    <li><a class="s-link" data-href="form">表单</a></li>
+                    <li><a class="s-link" data-href="pull">上拉刷新/下拉加载</a></li>
+                    <li><a class="s-link" data-href="scroll">滚动</a></li>
+                    <li><a class="s-link" data-href="touch">手势</a></li>
+                    <li><a class="s-link" data-href="wave">点击波纹特效</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-l-body">
+            <div class="page-p" data-page="index">
+                <h1>欢迎使用candy-mobile</h1>
+                <div class="page-c-block">
+                    <div class="page-c-block_title">安装</div>
+                    <div class="page-c-block_content">
+                        <div class="page-c-shell">
+                            <p>npm install candy-mobile --save</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-p" data-page="button">
+                <div class="page-c-block">
+                    <div class="page-c-block_title">普通按钮</div>
+                    <div class="page-c-block_content s-button-normal"></div>
+                </div>
+                <div class="page-c-block">
+                    <div class="page-c-block_title">主按钮</div>
+                    <div class="page-c-block_content s-button-primary"></div>
+                </div>
+                <div class="page-c-block">
+                    <div class="page-c-block_title">幽灵按钮</div>
+                    <div class="page-c-block_content s-button-ghost"></div>
+                </div>
+                <div class="page-c-block">
+                    <div class="page-c-block_title">链接按钮</div>
+                    <div class="page-c-block_content s-button-link"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="lib/flexible.js"></script>
+<script src="js/page.js"></script>
+<script src="js/index.js"></script>
+<script src="js/example.js"></script>
 </html>
