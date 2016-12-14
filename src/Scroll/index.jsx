@@ -29,6 +29,9 @@ export default class Scroll extends Component{
             height:height||document.body.clientHeight-dom.offset(ReactDOM.findDOMNode(this)).top
         });
     }
+    componentWillUnmount(){
+        cancelRaf(this.raf);
+    }
     _notReachSide(){
         const {onReachTop,onReachBottom}=this.props;
         if(this.state.deltaY>0){

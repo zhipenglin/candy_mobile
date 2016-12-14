@@ -2,18 +2,17 @@ h1{
     font-size:18px;
     text-align: center;
 }
-
-.page-root{
+body{
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    font-family: PingFang, 苹方, -apple-system, "SF UI Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
     font-size: 14px;
-    position: absolute;
-    top:0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iNiIgaGVpZ2h0PSI2Ij4KPHJlY3Qgd2lkdGg9IjYiIGhlaWdodD0iNiIgZmlsbD0iI2VlZSI+PC9yZWN0Pgo8ZyBpZD0iYyI+CjxyZWN0IHdpZHRoPSIzIiBoZWlnaHQ9IjMiIGZpbGw9IiNmZmYiPjwvcmVjdD4KPHJlY3QgeT0iMSIgd2lkdGg9IjMiIGhlaWdodD0iMiIgZmlsbD0iI2ZlZmVmZSI+PC9yZWN0Pgo8L2c+Cjx1c2UgeGxpbms6aHJlZj0iI2MiIHg9IjMiIHk9IjMiPjwvdXNlPgo8L3N2Zz4=");
-    font-family: 黑体;
+}
+.page-root{
 }
 
 .page-p{
@@ -23,7 +22,6 @@ h1{
 .page-p.active{
     display: block;
 }
-
 .page-l-menu{
     position: absolute;
     z-index: 99;
@@ -123,13 +121,18 @@ h1{
 }
 
 .page-l-body{
-    padding: 10px 8px;
+    padding: 50px 8px 10px 8px;
 }
 
 .page-l-header{
     background: #ff8331;
     color:#fff;
     padding: 10px 6px;
+    box-sizing: border-box;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top:0;
 }
 .pager-l-header__center{
     overflow: hidden;

@@ -21,5 +21,3 @@ export layer from './higherOrder/layer'
 export Pull from './Pull'
 
 export Wave from './Wave'
-
-
