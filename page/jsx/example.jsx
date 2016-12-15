@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast} from '../../src/index'
+import {Button,Toast,Confirm} from '../../src/index'
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -29,3 +29,8 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){new Toast('成功提示框',{type:'success'});}}>显示成功提示框</Button>
     <Button type="primary" size="small" onClick={function(){new Toast('加载中...',{type:'loading'});}}>显示加载提示框</Button>
 </div>,document.querySelector('.s-dialog-toast'));
+ReactDOM.render(<div>
+    <Button type="primary" size="small" onClick={function(){new Confirm('确认框');}}>确认框</Button>
+    <Button type="primary" size="small" onClick={function(){new Confirm('确认框',{callbackCancel:function(){}});}}>带取消的确认框</Button>
+    <Button type="primary" size="small" onClick={function(){new Confirm('确认框',{title:'请确定',callbackCancel:function(){}});}}>带标题的确认框</Button>
+</div>,document.querySelector('.s-dialog-confirm'));

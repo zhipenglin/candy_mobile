@@ -2,6 +2,7 @@ export Button from './Button'
 export LoadingButton from './Button/LoadingButton'
 
 export Toast from './Dialog/Toast'
+export Confirm from './Dialog/Confirm'
 
 export autoPrefix from './fn/autoPrefixer'
 export dom from './fn/dom'

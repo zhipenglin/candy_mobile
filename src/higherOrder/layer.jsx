@@ -8,7 +8,7 @@ export default function(ComposedComponent){
             this._layer=document.createElement('div');
             this.alive=true;
             this.isShow=true;
-            this.options=options;
+            this.options=Object.assign({},options);
             this.text=text;
             document.body.appendChild(this._layer);
             this._render();
@@ -33,6 +33,7 @@ export default function(ComposedComponent){
             this.alive=false;
             ReactDOM.unmountComponentAtNode(this._layer);
             document.body.removeChild(this._layer);
+            this.options.removeCallback&&this.options.removeCallback();
         }
         close=()=>{
             if(!this.alive){

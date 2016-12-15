@@ -12,16 +12,22 @@ export default class Toast extends Component{
     componentDidMount(){
         const {remove,time}=this.props;
         if(time){
-            setTimeout(()=>{
+            this.timer=setTimeout(()=>{
                 remove();
             },time);
         }
+    }
+    touchStartHandler=(e)=>{
+        e.preventDefault();
+        const {remove}=this.props;
+        clearTimeout(this.timer);
+        remove();
     }
     render(){
         const {show,className,type,children}=this.props;
         if(show){
             return (
-                <div className={classnames("candy-mob-toast",className)}>
+                <div className={classnames("candy-mob-toast",className)} onTouchStart={this.touchStartHandler}>
                     <div className="candy-mob-toast__inner">
                         <div className={classnames("candy-mob-toast__icon",{
                             "candy-mob-toast__icon--error":type=='error',

@@ -1,0 +1,42 @@
+@import "../name-space";
+@import "../fn";
+
+.#{$confirm}{
+  &__inner{
+    position: absolute;
+    left: 50%;
+    top:45%;
+    transform: translate(-50%,-50%);
+    background: rgba(232,232,232,0.95);
+    width: 600px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  &__content{
+    text-align: center;
+    padding: 30px;
+    @include line-bottom(#b5b5b5);
+  }
+  &__button{
+    margin: 0;
+    color:#ff8831;
+    flex:1;
+    border-radius: 0;
+  }
+  &__title{
+    font-size: 38px;
+    font-weight: bold;
+  }
+  &__msg{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 32px;
+  }
+  &__buttons{
+    display: flex;
+    @include line-left(#b5b5b5);
+    &--has-cancel:before{
+      left:50%;
+    }
+  }
+}
