@@ -126,8 +126,8 @@ export default class Wave extends Component {
             topLeftDiag, topRightDiag, botRightDiag, botLeftDiag
         );
         const rippleSize = rippleRadius * 2;
-        const left = pointerX - rippleRadius;
-        const top = pointerY - rippleRadius;
+        const left = (this.props.outside?elWidth/2:pointerX) - rippleRadius;
+        const top = (this.props.outside?elHeight/2:pointerY) - rippleRadius;
         return {
             directionInvariant: true,
             height: rippleSize,

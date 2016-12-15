@@ -23,7 +23,7 @@ body{
     display: block;
 }
 .page-l-menu{
-    position: absolute;
+    position: fixed;
     z-index: 99;
     top:0;
     left: 0;
@@ -31,8 +31,11 @@ body{
     bottom: 0;
     display: none;
 }
-.page-l-menu.active{
-    display: block;
+.page-l-menu.active .page-l-menu__inner{
+    transform: translateX(0);
+}
+.page-l-menu.active .page-l-menu__cover{
+    opacity:1;
 }
 .page-l-menu__cover{
     position: absolute;
@@ -40,7 +43,9 @@ body{
     top:0;
     right:0;
     bottom: 0;
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0,0,0,0.3);
+    opacity: 0;
+    transition:opacity 0.5s;
 }
 .page-l-menu__header{
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj4KPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmZjgzMzEiPjwvcmVjdD4KPGcgZmlsbD0iI2ZmOGY0NSI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMSIgeT0iMjAiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxIiB5PSI0MCI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEiIHk9IjYwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMSIgeT0iODAiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMTAwIiB4PSIyMCI+PC9yZWN0Pgo8cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxMDAiIHg9IjQwIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEwMCIgeD0iNjAiPjwvcmVjdD4KPHJlY3Qgd2lkdGg9IjEiIGhlaWdodD0iMTAwIiB4PSI4MCI+PC9yZWN0Pgo8L2c+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iI2ZmZiI+PC9yZWN0Pgo8L3N2Zz4=");
@@ -96,6 +101,8 @@ body{
     height: 100%;
     width: 70%;
     background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+");
+    transform: translateX(-100%);
+    transition: transform 0.5s;
 }
 .page-l-menu__inner ul{
     margin: 10px 0 0 0;
@@ -127,7 +134,6 @@ body{
 .page-l-header{
     background: #ff8331;
     color:#fff;
-    padding: 10px 6px;
     box-sizing: border-box;
     position: absolute;
     width: 100%;
@@ -138,9 +144,11 @@ body{
     overflow: hidden;
     text-align: center;
     line-height: 20px;
+    padding: 10px 0;
 }
 .pager-l-header__left{
     float: left;
+    padding: 10px;
 }
 .pager-l-header__left i{
     background-image: url('./images/menu.svg');
@@ -153,6 +161,7 @@ body{
     float: right;
     width: 20px;
     height: 20px;
+    padding: 10px;
 }
 
 .page-c-shell{

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src -d lib&&cross-env NODE_ENV=production webpack --progress --profile --colors",
     "babel": "babel src -d lib",
-    "webpack": "cross-env NODE_ENV=production webpack --progress --profile --colors",
+    "webpack": "cross-env NODE_ENV=development webpack --progress --profile --colors --watch",
     "page": "node page.publish.js"
   },
   "author": "linzp",

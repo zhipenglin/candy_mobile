@@ -9,6 +9,9 @@
   display:block;
   text-decoration:none;
   user-select: none;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
   &:hover{
     text-decoration:none;
   }
@@ -16,7 +19,7 @@
   font-size: 36px;
   color:#666;
   background-color:#f0f0f0;
-  transition: background-color 0.5s,color 0.5s;
+  transition: background-color 0.5s,color 0.5s,transform 0.3s;
   &--primary{
     background-color:#ff8831;
     color:#fff;
@@ -25,6 +28,18 @@
     color:#ff8831;
     background-color:transparent;
   }
+  &--link{
+    width: auto;
+    height: auto;
+    line-height: 1.4;
+    display: inline-block;
+    background-color:transparent;
+    padding: 10px;
+    color:#ff8831;
+    overflow:visible;
+    word-wrap:break-word;
+    text-overflow:clip;
+  }
   &--disabled{
     color: #ccc;
     background-color: #f7f7f7;
@@ -32,7 +47,25 @@
       background-color:#ffae72;
       color:#fff;
     }
+    &.#{$button}--ghost,&.#{$button}--link{
+      background-color:transparent;
+    }
   }
-
+  &--press{
+    transform: translateY(2px) scale(0.99);
+  }
+  &--small{
+    width: 300px;
+    display: inline-block;
+    margin-right:10px;
+    margin-left: 10px;
+  }
+  &--mini{
+    width:auto;
+    height: auto;
+    line-height: 1.4;
+    padding: 10px 20px;
+    display: inline-block;
+  }
 }
 
