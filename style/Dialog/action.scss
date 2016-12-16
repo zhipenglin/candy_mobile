@@ -1,0 +1,47 @@
+@import "../name-space";
+@import "../fn";
+
+.#{$action}{
+  &__cover{
+    content:'';
+    position: absolute;
+    display: block;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+  }
+  &__inner{
+    position: absolute;
+    left: 50%;
+    bottom:20px;
+    transform: translate(-50%,100%);
+    width: 700px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  &__group{
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  &__item{
+    background: rgba(232,232,232,0.98);
+    @include line-bottom(#b5b5b5);
+    &:last-child:after{
+      content:normal;
+    }
+    &--label{
+      text-align: center;
+      height: 100px;
+      line-height: 100px;
+      color: #8a8a8a;
+    }
+  }
+  &__button{
+    margin: 0;
+    flex:1;
+    border-radius: 0;
+    font-weight: bold;
+  }
+}

@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 import '../../style/higherOrdder/layer.scss'
+import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 
 export default function(ComposedComponent){
     return class Layer{
