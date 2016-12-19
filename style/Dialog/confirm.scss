@@ -7,6 +7,8 @@
     left: 50%;
     top:45%;
     transform: translate(-50%,-50%);
+  }
+  &__animate{
     background: rgba(232,232,232,0.95);
     width: 600px;
     border-radius: 16px;
@@ -36,6 +38,39 @@
     @include line-left(#b5b5b5);
     &--has-cancel:before{
       left:50%;
+    }
+  }
+}
+
+.#{$layer}--animate{
+  &-enter{
+    .#{$confirm}{
+      &__animate{
+        transform: scale(0.95);
+        transition: transform 300ms cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      }
+    }
+  }
+  &-enter-active{
+    .#{$confirm}{
+      &__animate{
+        transform: scale(1);
+      }
+    }
+  }
+  &-leave{
+    .#{$confirm}{
+      &__animate{
+        transform: scale(1);
+        transition: transform 300ms;
+      }
+    }
+  }
+  &-leave-active{
+    .#{$confirm}{
+      &__animate{
+        transform: scale(0.95);
+      }
     }
   }
 }

@@ -1,49 +1,53 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
 import '../../style/higherOrdder/layer.scss'
-import ReactCSSTransitionGroup from 'react/lib/ReactCSSTransitionGroup';
+import Animate from 'rc-animate';
 
 export default function(ComposedComponent){
     return class Layer{
         constructor(text,options){
             this._layer=document.createElement('div');
-            this.alive=true;
-            this.isShow=true;
+            this._layer.className='candy-mob-layer-set';
+            document.body.appendChild(this._layer);
+
             this.options=Object.assign({},options);
             this.text=text;
-            document.body.appendChild(this._layer);
-            this._render();
+            this.isShow=false;
+            this.show();
+        }
+        animateEndHandler=()=>{
+            if(!this.isShow){
+                this.destroy();
+            }
         }
         _render(){
-            ReactDOM.render(<ComposedComponent className="candy-mob-layer" show={this.isShow} remove={this.remove} close={this.close} {...this.options}>{this.text}</ComposedComponent>, this._layer);
+            ReactDOM.render(
+                <Animate transitionName="candy-mob-layer--animate" onEnd={this.animateEndHandler}>
+                    {this.isShow?<ComposedComponent className="candy-mob-layer" remove={this.remove} {...this.options}>{this.text}</ComposedComponent>:null}
+                </Animate>
+            , this._layer);
+        }
+        set isShow(value){
+            this._isShow=value;
+            this._render();
+        }
+        get isShow(){
+            return this._isShow;
         }
         show=()=>{
-            if(!this.alive){
-                console.warn('当前组件已销毁');
-                return;
-            }
             if(!this.isShow){
                 this.isShow=true;
-                this._render();
             }
         }
         remove=()=>{
-            if(!this.alive){
-                return;
-            }
-            this.alive=false;
-            ReactDOM.unmountComponentAtNode(this._layer);
-            document.body.removeChild(this._layer);
-            this.options.removeCallback&&this.options.removeCallback();
-        }
-        close=()=>{
-            if(!this.alive){
-                return;
-            }
             if(this.isShow){
                 this.isShow=false;
-                this._render();
+                this.options.removeCallback&&this.options.removeCallback();
             }
+        }
+        destroy=()=>{
+            //ReactDOM.unmountComponentAtNode(this._layer);
+            document.body.removeChild(this._layer);
         }
     }
 }

@@ -24,22 +24,18 @@ export default class Toast extends Component{
         remove();
     }
     render(){
-        const {show,className,type,children}=this.props;
-        if(show){
-            return (
-                <div className={classnames("candy-mob-toast",className)} onTouchStart={this.touchStartHandler}>
-                    <div className="candy-mob-toast__inner">
-                        <div className={classnames("candy-mob-toast__icon",{
+        const {className,type,children}=this.props;
+        return (
+            <div className={classnames("candy-mob-toast",className)} onTouchStart={this.touchStartHandler}>
+                <div className="candy-mob-toast__inner">
+                    <div className={classnames("candy-mob-toast__icon",{
                             "candy-mob-toast__icon--error":type=='error',
                             "candy-mob-toast__icon--success":type=='success',
                             "candy-mob-toast__icon--loading":type=='loading'
                         })}></div>
-                        <div className="candy-mob-toast__content">{children||'正在加载中...'}</div>
-                    </div>
+                    <div className="candy-mob-toast__content">{children||'正在加载中...'}</div>
                 </div>
-            );
-        }else{
-            return null;
-        }
+            </div>
+        );
     }
 }

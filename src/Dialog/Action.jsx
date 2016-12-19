@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import layer from '../higherOrder/layer'
 import '../../style/Dialog/action.scss'
 import Button from '../Button'
-import TweenOne from 'rc-tween-one'
 
 @layer
 export default class Action extends Component{
@@ -37,7 +36,7 @@ export default class Action extends Component{
         );
     }
     render(){
-        const {show,className,children}=this.props;
+        const {className,children}=this.props;
         if(!Array.isArray(children)){
             throw Error('参数必须为数组');
         }
@@ -48,17 +47,15 @@ export default class Action extends Component{
                 return this.renderAction(data,i);
             }
         });
-        if(show){
-            return (
-                <div className={classnames("candy-mob-action",className)}>
-                    <div className="candy-mob-action__cover" onTouchStart={this.touchStartHandler}></div>
-                    <TweenOne className="candy-mob-action__inner" animation={{y:0}}>
+        return (
+            <div className={classnames("candy-mob-action",className)}>
+                <div className="candy-mob-action__cover" onTouchStart={this.touchStartHandler}></div>
+                <div className="candy-mob-action__inner">
+                    <div className="candy-mob-action__animate">
                         {childrenContent}
-                    </TweenOne>
+                    </div>
                 </div>
-            );
-        }else{
-            return null;
-        }
+            </div>
+        );
     }
 }

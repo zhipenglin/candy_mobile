@@ -67,7 +67,7 @@ export default class Wave extends Component {
     }
     handleTouchStart=(event)=>{
         //event.stopPropagation();
-        event.preventDefault();
+        //event.preventDefault();
         if(this.props.abortOnScroll&&event.touches){
             this.startListeningForScrollAbort(event);
             this.startTime=Date.now();

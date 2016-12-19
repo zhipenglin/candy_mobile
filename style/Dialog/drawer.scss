@@ -1,0 +1,63 @@
+@import "../name-space";
+
+.#{$drawer}{
+  &__cover{
+    content:'';
+    position: absolute;
+    display: block;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+  }
+  &__inner{
+    position: fixed;
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 70%;
+    overflow: auto;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 6px 20px, rgba(0, 0, 0, 0.23) 0px 6px 20px;
+  }
+  &--right{
+    .#{$drawer}__inner{
+      left:auto;
+      right:0;
+    }
+  }
+}
+
+.#{$layer}--animate{
+  &-enter{
+    .#{$drawer}__inner{
+      transform: translateX(-100%);
+      transition: transform 300ms;
+    }
+    &.#{$drawer}--right .#{$drawer}__inner{
+      transform: translateX(100%);
+    }
+  }
+  &-enter-active{
+    .#{$drawer}__inner{
+      transform: translateX(0);
+    }
+    &.#{$drawer}--right .#{$drawer}__inner{
+      transform: translateX(0);
+    }
+  }
+  &-leave{
+    .#{$drawer}__inner{
+      transform: translateX(0);
+      transition: transform 300ms;
+    }
+  }
+  &-leave-active{
+    .#{$drawer}__inner{
+      transform: translateX(-100%);
+    }
+    &.#{$drawer}--right .#{$drawer}__inner{
+      transform: translateX(100%);
+    }
+  }
+}

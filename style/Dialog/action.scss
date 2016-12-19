@@ -15,7 +15,7 @@
     position: absolute;
     left: 50%;
     bottom:20px;
-    transform: translate(-50%,100%);
+    transform: translate(-50%,0);
     width: 700px;
     border-radius: 16px;
     overflow: hidden;
@@ -43,5 +43,37 @@
     flex:1;
     border-radius: 0;
     font-weight: bold;
+  }
+}
+.#{$layer}--animate{
+  &-enter{
+    .#{$action}{
+      &__animate{
+        transform: translateY(100%);
+        transition: transform 300ms;
+      }
+    }
+  }
+  &-enter-active{
+    .#{$action}{
+      &__animate{
+        transform: translateY(0);
+      }
+    }
+  }
+  &-leave{
+    .#{$action}{
+      &__animate{
+        transform: translateY(0);
+        transition: transform 300ms;
+      }
+    }
+  }
+  &-leave-active{
+    .#{$action}{
+      &__animate{
+        transform: translateY(100%);
+      }
+    }
   }
 }

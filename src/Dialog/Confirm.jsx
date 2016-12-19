@@ -26,11 +26,11 @@ export default class Confirm extends Component{
         }
     }
     render(){
-        const {show,className,title,callbackCancel,textCancel,callbackConfirm,textConfirm,children}=this.props;
-        if(show){
-            return (
-                <div className={classnames("candy-mob-confirm",className)}>
-                    <div className="candy-mob-confirm__inner">
+        const {className,title,callbackCancel,textCancel,callbackConfirm,textConfirm,children}=this.props;
+        return (
+            <div className={classnames("candy-mob-confirm",className)}>
+                <div className="candy-mob-confirm__inner">
+                    <div className="candy-mob-confirm__animate">
                         <div className="candy-mob-confirm__content">
                             {title?<div className="candy-mob-confirm__title">{title}</div>:null}
                             <div className="candy-mob-confirm__msg">{children}</div>
@@ -43,9 +43,7 @@ export default class Confirm extends Component{
                         </div>
                     </div>
                 </div>
-            );
-        }else{
-            return null;
-        }
+            </div>
+        );
     }
 }
