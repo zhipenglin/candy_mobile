@@ -1,4 +1,6 @@
 import React,{Component} from 'react';
+import classnames from 'classnames'
+import '../../style/Touch/style.scss'
 
 export default class Touch extends Component{
     static defaultProps={
@@ -65,7 +67,9 @@ export default class Touch extends Component{
     _handleTouchStart=(evt)=>{
         this.now = Date.now();
         this.superEvent={
-            startTime:this.now
+            startTime:this.now,
+            distanceX:0,
+            distanceY:0
         };
         this._emitEvent('onTouchStart', evt);
         this.x1 = evt.touches[0].pageX;
@@ -117,6 +121,8 @@ export default class Touch extends Component{
             if (this.x2 !== null) {
                 this.superEvent.deltaX = currentX - this.x2;
                 this.superEvent.deltaY = currentY - this.y2;
+                this.superEvent.distanceX+=this.superEvent.deltaX;
+                this.superEvent.distanceY+=this.superEvent.deltaY;
                 //evt.deltaX = currentX - this.x2;
                 //evt.deltaY = currentY - this.y2;
             }else{
@@ -131,7 +137,7 @@ export default class Touch extends Component{
             var interval=(Date.now()-this.moveTime)/1000;
             if(interval>0){
                 this.superEvent.speedX=this.superEvent.deltaX/interval;
-                this.superEvent.speedY=this.superEvent.deltaX/interval;
+                this.superEvent.speedY=this.superEvent.deltaY/interval;
             }else{
                 this.superEvent.speedX=0;
                 this.superEvent.speedY=0;
@@ -196,9 +202,9 @@ export default class Touch extends Component{
     }
 
     render() {
-        const {onTap, onMultipointStart, onTouchEnd, onTouchStart, onLongTap, onSwipe, onPinch, onRotate, onPressMove, onMultipointEnd, onDoubleTap, ...reset}=this.props;
+        const {className,onTap, onMultipointStart, onTouchEnd, onTouchStart, onLongTap, onSwipe, onPinch, onRotate, onPressMove, onMultipointEnd, onDoubleTap, ...reset}=this.props;
         return (
-            <div className="candy-mob-touch" onTouchStart={this._handleTouchStart}
+            <div className={classnames("candy-mob-touch",className)} onTouchStart={this._handleTouchStart}
                  onTouchMove={this._handleTouchMove}
                  onTouchCancel={this._handleTouchCancel}
                  onTouchEnd={this._handleTouchEnd} {...reset} />

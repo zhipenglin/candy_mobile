@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast,Confirm,Action,Drawer} from '../../src/index'
+import {Button,Toast,Confirm,Action,Drawer,List,ListItem} from '../../src/index'
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -67,3 +67,110 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){new Drawer(<div><h1>我是Drawer</h1></div>,{right:true});}}>抽屉右</Button>
     <Button type="primary" size="small" onClick={function(){new Drawer(<DrawerContent/>);}}>抽屉内部关闭</Button>
 </div>,document.querySelector('.s-dialog-drawer'));
+
+ReactDOM.render(<div>
+    <List title="普通列表">
+        <ListItem>列表1</ListItem>
+        <ListItem>列表2</ListItem>
+        <ListItem>列表3</ListItem>
+        <ListItem>列表4</ListItem>
+    </List>
+    <List inside title="内嵌列表">
+        <ListItem>列表1</ListItem>
+        <ListItem>列表2</ListItem>
+        <ListItem>列表3</ListItem>
+        <ListItem>列表4</ListItem>
+    </List>
+    <List title="可点击列表">
+        <ListItem onClick={function(){console.log('clicked');}}>列表1</ListItem>
+        <ListItem onClick={function(){console.log('clicked');}}>列表2</ListItem>
+        <ListItem onClick={function(){console.log('clicked');}}>列表3</ListItem>
+        <ListItem onClick={function(){console.log('clicked');}}>列表4</ListItem>
+    </List>
+    <List title="多媒体列表">
+        <ListItem icon={<i className="icon" style={{
+            width: '60px',
+            display:'block',
+            height: '60px',
+            background: '#ececec',
+            borderRadius: '8px',
+        }}></i>} onClick={function(){console.log('clicked');}}>
+            <div className="title">列表1</div>
+            <div className="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
+        </ListItem>
+        <ListItem icon={<i className="icon" style={{
+            width: '60px',
+            display:'block',
+            height: '60px',
+            background: '#ececec',
+            borderRadius: '8px',
+        }}></i>} onClick={function(){console.log('clicked');}}>
+            <div className="title">列表2</div>
+            <div className="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
+        </ListItem>
+        <ListItem icon={<i className="icon" style={{
+            width: '60px',
+            display:'block',
+            height: '60px',
+            background: '#ececec',
+            borderRadius: '8px',
+        }}></i>} onClick={function(){console.log('clicked');}}>
+            <div className="title">列表3</div>
+            <div className="content">内容内容内容内容内容内容内容</div>
+        </ListItem>
+        <ListItem icon={<i className="icon" style={{
+            width: '60px',
+            display:'block',
+            height: '60px',
+            background: '#ececec',
+            borderRadius: '8px',
+        }}></i>} onClick={function(){console.log('clicked');}}>
+            <div className="title">列表4</div>
+            <div className="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
+        </ListItem>
+    </List>
+    <List title="带左拉菜单的列表">
+        <ListItem menu={[{
+            text:'删除',
+            color:'red',
+            onClick:function(){
+                console.log('删除');
+            }
+        }]}>列表1</ListItem>
+        <ListItem menu={[{
+            text:'测试测试测试测试测试测试',
+            color:'red',
+            onClick:function(){
+                console.log('测试测试测试测试测试测试');
+            }
+        }]} onClick={function(){}}>列表2</ListItem>
+        <ListItem menu={[{
+            text:'删除',
+            color:'red',
+            onClick:function(){
+                console.log('删除');
+            }
+        }]} icon={<i className="icon" style={{
+            width: '60px',
+            display:'block',
+            height: '60px',
+            background: '#ececec',
+            borderRadius: '8px',
+        }}></i>} onClick={function(){console.log('clicked');}}>
+            <div className="title">列表4</div>
+            <div className="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
+        </ListItem>
+        <ListItem menu={[{
+            text:'编辑',
+            onClick:function(){
+                console.log('编辑');
+            }
+        },{
+            text:'删除',
+            color:'red',
+            onClick:function(){
+                console.log('删除');
+            }
+        }]} onClick={function(){}}>列表2</ListItem>
+    </List>
+</div>,document.querySelector('.s-list-normal'));

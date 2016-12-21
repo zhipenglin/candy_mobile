@@ -1,4 +1,4 @@
-@mixin line-bottom($color:#e5e5e5){
+@mixin line-bottom($color:#c8c7cc){
   position: relative;
   &:after{
     content:'';
@@ -12,7 +12,7 @@
     background-color: $color;
   }
 }
-@mixin line-top($color:#e5e5e5){
+@mixin line-top($color:#c8c7cc){
   position: relative;
   &:after{
     content:'';
@@ -27,7 +27,7 @@
   }
 }
 
-@mixin line-left($color:#e5e5e5){
+@mixin line-left($color:#c8c7cc){
   position: relative;
   &:before{
     content:'';

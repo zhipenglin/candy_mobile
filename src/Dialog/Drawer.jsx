@@ -12,7 +12,9 @@ export default class Drawer extends Component{
     }
     render(){
         const {className,children,remove,right}=this.props;
-
+        if(!React.isValidElement(children)){
+            throw new Error('该组件的第一个参数必须为react dom');
+        }
         return (
             <div className={classnames('candy-mob-drawer',{
                 'candy-mob-drawer--right':right

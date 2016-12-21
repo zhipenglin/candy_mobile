@@ -1,0 +1,112 @@
+@import "../name-space";
+@import "../fn";
+
+.#{$list}{
+  &__ul{
+    list-style: none;
+    margin: 0;
+    padding:0;
+    overflow: hidden;
+  }
+  &__title{
+    color:#6d6d72;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 35px 30px 20px;
+  }
+  &--inside{
+    margin: 40px;
+    .#{$list}__ul{
+      border-radius: 20px;
+    }
+  }
+}
+.#{$listItem}{
+  background-color: #fff;
+  color:#333;
+  font-size: 28px;
+  &_layer:before{
+    background: transparent;
+  }
+  &__inner{
+    display: flex;
+  }
+  &__media{
+    margin-left:30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    overflow: hidden;
+    align-self: center;
+  }
+  &__touch{
+    position: relative;
+  }
+  &__animate{
+    z-index: 9;
+    position: relative;
+    background-color: #fff;
+  }
+  &__cover{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    z-index: 10;
+  }
+  &__menu{
+    position: absolute;
+    right: 0;
+    top:0;
+    bottom: 0;
+    display: flex;
+    &_item{
+      min-width:120px;
+      background-color: #c7c7cc;
+      .#{$wave}{
+        text-align: center;
+        color:#fff;
+      }
+    }
+  }
+  &__content{
+    @include line-bottom();
+    margin-left:30px;
+    padding: 30px 10px;
+    flex: 1;
+    overflow: hidden;
+    white-space:normal;
+    line-height: 1.4;
+  }
+  .#{$button}{
+    margin: 0;
+    text-align:left;
+    border-radius: 0;
+    color:#333;
+    font-size: 28px;
+    height: 100%;
+    .#{$listItem}__content{
+      padding-right: 50px;
+      &:before{
+        position: absolute;
+        content:'';
+        display: block;
+        background: url('../svg/enter.svg');
+        background-size: 50px 50px;
+        width: 50px;
+        height: 50px;
+        right: 0;
+        top:50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+  &:last-child{
+    .#{$listItem}__content:after{
+      content: normal;
+    }
+  }
+}

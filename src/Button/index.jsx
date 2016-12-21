@@ -1,5 +1,4 @@
 import React,{Component} from 'react'
-import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 import Wave from '../Wave'
 import Touch from '../Touch'
@@ -22,11 +21,11 @@ export default class Button extends Component{
             press:false
         });
     }
-    clickHandler=(...args)=>{
+    clickHandler=(event,superEvent)=>{
         if(this.props.disabled){
             return;
         }
-        this.props.onClick&&this.props.onClick(...args);
+        this.props.onClick&&this.props.onClick(event,superEvent);
     }
     render(){
         const {className,disabled,onClick,size,children,type,...reset}=this.props;

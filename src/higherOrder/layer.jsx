@@ -46,8 +46,8 @@ export default function(ComposedComponent){
             }
         }
         destroy=()=>{
-            //ReactDOM.unmountComponentAtNode(this._layer);
             document.body.removeChild(this._layer);
+            ReactDOM.unmountComponentAtNode(this._layer);
         }
     }
 }
