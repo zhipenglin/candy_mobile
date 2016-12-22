@@ -9,6 +9,8 @@ export Drawer from './Dialog/Drawer'
 export List from './List'
 export ListItem from './List/ListItem'
 
+export Select from './Select'
+
 export autoPrefix from './fn/autoPrefixer'
 export dom from './fn/dom'
 export fetch from './fn/fetch'

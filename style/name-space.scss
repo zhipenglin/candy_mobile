@@ -3,10 +3,10 @@ $button:'#{$base}-button';
 $form:'#{$base}-form';
 $field:'#{$base}-field';
 $input:'#{$base}-input';
-$pass-word:'#{$base}-pass-word';
+$pass-word:'#{$base}-pass_word';
 
 $wave:'#{$base}-wave';
-$wave-ripple:'#{$wave}__circle-ripple';
+$wave-ripple:'#{$wave}-ripple';
 
 $scroll:'#{$base}-scroll';
 
@@ -20,3 +20,5 @@ $drawer:'#{$base}-drawer';
 
 $list:'#{$base}-list';
 $listItem:'#{$base}-list_item';
+
+$select:'#{$base}-select';

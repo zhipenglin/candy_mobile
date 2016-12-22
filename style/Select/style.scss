@@ -1,0 +1,113 @@
+@import "../name-space";
+@import "../fn";
+
+.#{$select}{
+  &__cover{
+    content:'';
+    position: absolute;
+    display: block;
+    top:0;
+    bottom: 0;
+    left:0;
+    right: 0;
+  }
+  &__inner{
+    position: absolute;
+    left: 0;
+    bottom:0;
+    width: 100%;
+    background-color: #fff;
+  }
+  &__title{
+    display: flex;
+    align-items: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    @include line-bottom();
+    &__center{
+      font-size: 34px;
+      text-align: center;
+      flex: 1;
+    }
+  }
+  &__content{
+    padding: 30px 20px;
+    box-sizing: border-box;
+    display: flex;
+    height: 500px;
+    position: relative;
+    &:before{
+      content:'';
+      display: block;
+      position: absolute;
+      left:0;
+      right:0;
+      top:0;
+      bottom: 0;
+      pointer-events: none;
+      background-image: linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.6)),linear-gradient(0deg,rgba(255,255,255,.95),rgba(255,255,255,.6));
+      background-position: top,bottom;
+      background-size: 100% 210px;
+      background-repeat: no-repeat;
+    }
+    &:after{
+      content:'';
+      display: block;
+      position: absolute;
+      pointer-events: none;
+      left:0;
+      width:100%;
+      height: 80px;
+      top:50%;
+      transform: translateY(-50%);
+      box-sizing: border-box;
+      border: solid 1PX #e4e4e4;
+    }
+  }
+  &__group{
+    flex: 1;
+    text-align: center;
+    overflow: auto;
+    background-color: #f7f7f7;
+    &__inner{
+      padding: 180px 0;
+    }
+  }
+  &__option{
+    font-size: 32px;
+    line-height: 80px;
+  }
+}
+
+.#{$layer}--animate{
+  &-enter{
+    .#{$select}{
+      &__inner{
+        transform: translateY(100%);
+        transition: transform 300ms;
+      }
+    }
+  }
+  &-enter-active{
+    .#{$select}{
+      &__inner{
+        transform: translateY(0);
+      }
+    }
+  }
+  &-leave{
+    .#{$select}{
+      &__inner{
+        transform: translateY(0);
+        transition: transform 300ms;
+      }
+    }
+  }
+  &-leave-active{
+    .#{$select}{
+      &__inner{
+        transform: translateY(100%);
+      }
+    }
+  }
+}

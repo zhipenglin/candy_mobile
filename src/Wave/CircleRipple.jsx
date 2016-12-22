@@ -64,9 +64,9 @@ export default class CircleRipple extends Component{
     render(){
         const {style,white,outside}=this.props;
         return (
-            <div className={classnames("candy-mob-wave__circle-ripple",{
-                "candy-mob-wave__circle-ripple--white":white,
-                "candy-mob-wave__circle-ripple--outside":outside
+            <div className={classnames("candy-mob-wave-ripple",{
+                "candy-mob-wave-ripple--white":white,
+                "candy-mob-wave-ripple--outside":outside
             })} style={style}></div>
         );
     }

@@ -37,11 +37,12 @@ export default class ListItem extends Component{
                 return;
             }
         }else{
-            if(this.state.menuX+superEvent.deltaX<-this.refs.item_menu.offsetWidth-20){
+            let distance=this.state.menuX+superEvent.deltaX;
+            if(distance<-this.refs.item_menu.offsetWidth-20||distance>20){
                 return;
             }
             this.setState({
-                menuX:this.state.menuX+superEvent.deltaX
+                menuX:distance
             });
         }
     }
@@ -77,17 +78,21 @@ export default class ListItem extends Component{
             let menuList=menu.map((item,key)=>{
                 return <Button className="candy-mob-list_item__menu_item" style={item.color?{background:item.color}:{}} type="ghost" key={key} onClick={item.onClick}>{item.text}</Button>
             });
+            let style={
+                transform:`translateX(${this.state.menuX}px)`
+            };
+            if(!this.state.menuChange){
+                style.transition='transform 300ms';
+            }
             return <div className="candy-mob-list_item__touch"  style={this.state.open?{zIndex:1000}:{}}>
-                        {this.state.open?<div className="candy-mob-list_item__cover" onTouchStart={()=>{
+                        {this.state.open?<div className="candy-mob-list_item__cover" style={style} onTouchStart={()=>{
                             this.closeMenu();
                         }}></div>:null}
                         <Touch onTouchEnd={this.touchEndHandler} onPressMove={this.pressMoveHandler}>
-                            <div className="candy-mob-list_item__animate" style={{
-                                transform:`translateX(${this.state.menuX}px)`
-                            }}>
+                            <div className="candy-mob-list_item__animate" style={style}>
                                 {children}
                             </div>
-                            <div className="candy-mob-list_item__menu" ref="item_menu" style={this.state.open?{zIndex:11}:{}}>{menuList}</div>
+                            <div className="candy-mob-list_item__menu" ref="item_menu">{menuList}</div>
                         </Touch>
                     </div>
         }else{

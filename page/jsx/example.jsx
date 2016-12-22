@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast,Confirm,Action,Drawer,List,ListItem} from '../../src/index'
+import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select} from '../../src/index'
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -174,3 +174,9 @@ ReactDOM.render(<div>
         }]} onClick={function(){}}>列表2</ListItem>
     </List>
 </div>,document.querySelector('.s-list-normal'));
+
+ReactDOM.render(<div>
+    <Button type="primary" size="small" onClick={function(){
+        new Select([['选项1','选项2','选项3','选项4'],['项目1','项目2','项目3']]);
+    }}>打开选择器</Button>
+</div>,document.querySelector('.s-select-single'));
