@@ -1,22 +1,17 @@
 import React,{Component,cloneElement} from 'react'
 import classnames from 'classnames'
+import {pure,setDisplayName} from 'recompose'
 import Button from '../Button'
 import Touch from '../Touch'
-import layer from '../higherOrder/layer'
+import layer from '../higherOrder/layerTouchClose'
 
-@layer
-class Cover extends Component{
-    touchStartHandler=()=>{
-        this.props.remove();
-    }
-    render(){
-        const {className}=this.props;
-        return (
-            <div className={classnames("candy-mob-list_item_layer",className)} onTouchStart={this.touchStartHandler}></div>
-        );
-    }
-}
+const Cover=layer(pure(({className,remove})=>{
+    return (
+        <div className={classnames("candy-mob-list_item_layer",className)} onTouchStart={remove}></div>
+    )
+}));
 
+@setDisplayName('ListItem')
 export default class ListItem extends Component{
     constructor(){
         super();
@@ -110,7 +105,7 @@ export default class ListItem extends Component{
     render(){
         const {className,onClick,icon,menu,children}=this.props;
         return (
-            <li className={classnames("candy-mob-list_item",{
+            <div className={classnames("candy-mob-list_item",{
                 "candy-mob-list_item--icon":icon,
                 "candy-mob-list_item--link":typeof onClick=='function',
                 "candy-mob-list_item--menu":menu&&menu.length>0
@@ -119,7 +114,7 @@ export default class ListItem extends Component{
                     {icon?<div className="candy-mob-list_item__media">{icon}</div>:null}
                     <div className="candy-mob-list_item__content">{children}</div>
                 </div>))}
-            </li>
+            </div>
         );
     }
 }

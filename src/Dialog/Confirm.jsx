@@ -3,47 +3,45 @@
  */
 import React,{Component} from 'react'
 import classnames from 'classnames'
+import {pure} from 'recompose'
 import layer from '../higherOrder/layer'
 import '../../style/Dialog/confirm.scss'
 import Button from '../Button'
 
-@layer
-export default class Confirm extends Component{
-    cancelClickHandler=()=>{
-        const {remove,cancelCallback}=this.props;
+export default layer(pure(({className,title,cancelCallback,confirmCallback,textCancel,callbackConfirm,textConfirm,remove,children})=>{
+    var cancelClickHandler=()=>{
         if(typeof cancelCallback=='function'){
-            cancelCallback(remove);
+            if(cancelCallback(remove)!==false){
+                remove();
+            }
         }else{
             remove();
         }
-    }
-    confirmClickHandler=()=>{
-        const {remove,confirmCallback}=this.props;
+    },confirmClickHandler=()=>{
         if(typeof confirmCallback=='function'){
-            confirmCallback(remove);
+            if(confirmCallback(remove)!==false){
+                remove();
+            }
         }else{
             remove();
         }
     }
-    render(){
-        const {className,title,callbackCancel,textCancel,callbackConfirm,textConfirm,children}=this.props;
-        return (
-            <div className={classnames("candy-mob-confirm",className)}>
-                <div className="candy-mob-confirm__inner">
-                    <div className="candy-mob-confirm__animate">
-                        <div className="candy-mob-confirm__content">
-                            {title?<div className="candy-mob-confirm__title">{title}</div>:null}
-                            <div className="candy-mob-confirm__msg">{children}</div>
-                        </div>
-                        <div className={classnames("candy-mob-confirm__buttons",{
-                            "candy-mob-confirm__buttons--has-cancel":callbackCancel||textCancel
+    return (
+        <div className={classnames("candy-mob-confirm",className)}>
+            <div className="candy-mob-confirm__inner">
+                <div className="candy-mob-confirm__animate">
+                    <div className="candy-mob-confirm__content">
+                        {title?<div className="candy-mob-confirm__title">{title}</div>:null}
+                        <div className="candy-mob-confirm__msg">{children}</div>
+                    </div>
+                    <div className={classnames("candy-mob-confirm__buttons",{
+                            "candy-mob-confirm__buttons--has-cancel":cancelCallback||textCancel
                         })}>
-                            {callbackCancel||textCancel?<Button className="candy-mob-confirm__button" type="ghost" onClick={this.cancelClickHandler}>{textCancel||'取消'}</Button>:null}
-                            <Button className="candy-mob-confirm__button" type="ghost" onClick={this.confirmClickHandler}>{textConfirm||'确定'}</Button>
-                        </div>
+                        {cancelCallback||textCancel?<Button className="candy-mob-confirm__button" type="ghost" onClick={cancelClickHandler}>{textCancel||'取消'}</Button>:null}
+                        <Button className="candy-mob-confirm__button" type="ghost" onClick={confirmClickHandler}>{textConfirm||'确定'}</Button>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+}));

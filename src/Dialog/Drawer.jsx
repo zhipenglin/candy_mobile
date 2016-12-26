@@ -1,31 +1,22 @@
 import React,{Component,cloneElement} from 'react'
 import classnames from 'classnames'
-import layer from '../higherOrder/layer'
+import {pure} from 'recompose'
+import layer from '../higherOrder/layerTouchClose'
 import '../../style/Dialog/drawer.scss'
 
-@layer
-export default class Drawer extends Component{
-    touchStartHandler=(e)=>{
-        e.preventDefault();
-        const {remove}=this.props;
-        remove();
+export default layer(pure(({className,children,remove,right})=>{
+    if(!React.isValidElement(children)){
+        throw new Error('该组件的第一个参数必须为react dom');
     }
-    render(){
-        const {className,children,remove,right}=this.props;
-        if(!React.isValidElement(children)){
-            throw new Error('该组件的第一个参数必须为react dom');
-        }
-        return (
-            <div className={classnames('candy-mob-drawer',{
+    return (
+        <div className={classnames('candy-mob-drawer',{
                 'candy-mob-drawer--right':right
             },className)}>
-                <div className="candy-mob-drawer__cover" onTouchStart={this.touchStartHandler}></div>
-                <div className="candy-mob-drawer__inner">
-                    {cloneElement(children,{
-                        remove:remove
-                    })}
-                </div>
+            <div className="candy-mob-drawer__inner">
+                {cloneElement(children,{
+                    remove:remove
+                })}
             </div>
-        );
-    }
-}
+        </div>
+    );
+}));

@@ -2,15 +2,6 @@
 @import "../fn";
 
 .#{$action}{
-  &__cover{
-    content:'';
-    position: absolute;
-    display: block;
-    top:0;
-    bottom: 0;
-    left:0;
-    right: 0;
-  }
   &__inner{
     position: absolute;
     left: 50%;

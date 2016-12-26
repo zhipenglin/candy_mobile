@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
+import classnames from 'classnames'
 import '../../style/higherOrdder/layer.scss'
 import Animate from 'rc-animate';
 
@@ -20,10 +21,18 @@ export default function(ComposedComponent){
                 this.destroy();
             }
         }
+        touchStartHandler=(e)=>{
+            e.preventDefault();
+        }
         _render(){
             ReactDOM.render(
-                <Animate transitionName="candy-mob-layer--animate" onEnd={this.animateEndHandler}>
-                    {this.isShow?<ComposedComponent className="candy-mob-layer" remove={this.remove} {...this.options}>{this.text}</ComposedComponent>:null}
+                <Animate className="candy-mob-layer" transitionName="candy-mob-layer--animate" onEnd={this.animateEndHandler}>
+                    {this.isShow?<div>
+                        <div className={classnames("candy-mob-layer__cover",{
+                            "candy-mob-layer__cover--transparent":ComposedComponent.coverHide
+                        })}onTouchStart={this.touchStartHandler}></div>
+                        <ComposedComponent className="candy-mob-layer__content" remove={this.remove} {...this.options}>{this.text}</ComposedComponent>
+                    </div>:null}
                 </Animate>
             , this._layer);
         }

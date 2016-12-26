@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import classnames from 'classnames'
-import layer from '../higherOrder/layer'
+import layer from '../higherOrder/layerTouchClose'
 import '../../style/Dialog/toast.scss'
 
 @layer
@@ -17,16 +17,10 @@ export default class Toast extends Component{
             },time);
         }
     }
-    touchStartHandler=(e)=>{
-        e.preventDefault();
-        const {remove}=this.props;
-        clearTimeout(this.timer);
-        remove();
-    }
     render(){
         const {className,type,children}=this.props;
         return (
-            <div className={classnames("candy-mob-toast",className)} onTouchStart={this.touchStartHandler}>
+            <div className={classnames("candy-mob-toast",className)}>
                 <div className="candy-mob-toast__inner">
                     <div className={classnames("candy-mob-toast__icon",{
                             "candy-mob-toast__icon--error":type=='error',

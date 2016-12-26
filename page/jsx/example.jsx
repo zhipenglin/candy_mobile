@@ -31,8 +31,8 @@ ReactDOM.render(<div>
 </div>,document.querySelector('.s-dialog-toast'));
 ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){new Confirm('确认框');}}>确认框</Button>
-    <Button type="primary" size="small" onClick={function(){new Confirm('确认框',{callbackCancel:function(){}});}}>带取消的确认框</Button>
-    <Button type="primary" size="small" onClick={function(){new Confirm('确认框',{title:'请确定',callbackCancel:function(){}});}}>带标题的确认框</Button>
+    <Button type="primary" size="small" onClick={function(){new Confirm('确认框',{cancelCallback:function(){}});}}>带取消的确认框</Button>
+    <Button type="primary" size="small" onClick={function(){new Confirm('确认框',{title:'请确定',cancelCallback:function(){}});}}>带标题的确认框</Button>
 </div>,document.querySelector('.s-dialog-confirm'));
 
 ReactDOM.render(<div>
@@ -68,6 +68,32 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){new Drawer(<DrawerContent/>);}}>抽屉内部关闭</Button>
 </div>,document.querySelector('.s-dialog-drawer'));
 
+
+class AnimateList extends Component{
+    itemList=[<ListItem key="0">列表1</ListItem>,
+    <ListItem key="1">列表2</ListItem>,
+    <ListItem key="2">列表3</ListItem>,
+    <ListItem key="3">列表4</ListItem>]
+    state={
+        show:false
+    }
+    renderList(){
+        return <List animate>
+            {this.state.show?this.itemList:null}
+        </List>
+    }
+    swatchList=()=>{
+        this.setState({
+            show:!this.state.show
+        });
+    }
+    render(){
+        return <div>
+            <Button type="primary" size="small" onClick={this.swatchList}>{this.state.show?'列表出场':'列表进场'}</Button>
+            {this.renderList()}
+        </div>
+    }
+}
 ReactDOM.render(<div>
     <List title="普通列表">
         <ListItem>列表1</ListItem>
@@ -81,6 +107,10 @@ ReactDOM.render(<div>
         <ListItem>列表3</ListItem>
         <ListItem>列表4</ListItem>
     </List>
+    <div>
+        <div>带进出场动画的列表</div>
+        <AnimateList></AnimateList>
+    </div>
     <List title="可点击列表">
         <ListItem onClick={function(){console.log('clicked');}}>列表1</ListItem>
         <ListItem onClick={function(){console.log('clicked');}}>列表2</ListItem>

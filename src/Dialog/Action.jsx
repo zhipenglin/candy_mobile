@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import classnames from 'classnames'
-import layer from '../higherOrder/layer'
+import {pure,nest} from 'recompose'
+import layer from '../higherOrder/layerTouchClose'
 import '../../style/Dialog/action.scss'
 import Button from '../Button'
 
@@ -21,11 +22,6 @@ export default class Action extends Component{
             })} key={key}>{data.label?data.text:<Button className="candy-mob-action__button" type="ghost" style={{'color':data.color}} onClick={this.actionClickHandler.bind(this,data.callback)}>{data.text}</Button>}</div>
         );
     }
-    touchStartHandler=(e)=>{
-        e.preventDefault();
-        const {remove}=this.props;
-        remove();
-    }
     renderGroup(data,key){
         return (
             <div className="candy-mob-action__group" key={key}>{
@@ -36,7 +32,7 @@ export default class Action extends Component{
         );
     }
     render(){
-        const {className,children}=this.props;
+        const {className,remove,children}=this.props;
         if(!Array.isArray(children)){
             throw Error('参数必须为数组');
         }
@@ -49,7 +45,6 @@ export default class Action extends Component{
         });
         return (
             <div className={classnames("candy-mob-action",className)}>
-                <div className="candy-mob-action__cover" onTouchStart={this.touchStartHandler}></div>
                 <div className="candy-mob-action__inner">
                     <div className="candy-mob-action__animate">
                         {childrenContent}
