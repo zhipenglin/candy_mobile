@@ -23,13 +23,11 @@ export default class ListItem extends Component{
     }
     pressMoveHandler=(event,superEvent)=>{
         if(!this.state.menuChange){
-            let x=Math.abs(superEvent.distanceX),y=Math.abs(superEvent.distanceY);
+            let x=Math.abs(superEvent.deltaX),y=Math.abs(superEvent.deltaY);
             if(superEvent.distanceX<-10&&x>y){
                 this.setState({
                     menuChange:true
                 });
-            }else{
-                return;
             }
         }else{
             let distance=this.state.menuX+superEvent.deltaX;
