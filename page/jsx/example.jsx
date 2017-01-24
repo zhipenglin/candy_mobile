@@ -107,6 +107,10 @@ ReactDOM.render(<div>
         <ListItem>列表3</ListItem>
         <ListItem>列表4</ListItem>
     </List>
+    <div>
+        <div>带进出场动画的列表</div>
+        <AnimateList></AnimateList>
+    </div>
     <List title="可点击列表">
         <ListItem onClick={function(){console.log('clicked');}}>列表1</ListItem>
         <ListItem onClick={function(){console.log('clicked');}}>列表2</ListItem>
@@ -201,10 +205,6 @@ ReactDOM.render(<div>
             }
         }]} onClick={function(){}}>列表2</ListItem>
     </List>
-    <div>
-        <div>带进出场动画的列表</div>
-        <AnimateList></AnimateList>
-    </div>
 </div>,document.querySelector('.s-list-normal'));
 
 ReactDOM.render(<div>
