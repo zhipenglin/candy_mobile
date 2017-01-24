@@ -95,9 +95,13 @@ export default class ListItem extends Component{
         }
     }
     renderClick(children){
-        const {onClick}=this.props;
+        const {onClick,href}=this.props;
         if(typeof onClick=='function'){
             return <Button onClick={onClick} type="ghost">{children}</Button>;
+        }else if(href){
+            return <Button onClick={()=>{
+                location.href=href;
+            }} type="ghost">{children}</Button>;
         }else{
             return children;
         }

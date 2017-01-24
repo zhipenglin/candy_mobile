@@ -83,7 +83,7 @@ export default class Scroll extends Component{
                         }
                         speed*=0.5;
                     }else{
-                        speed*=0.95;
+                        speed*=0.96;
                     }
                     if(Math.abs(speed)>0.5){
                         step();

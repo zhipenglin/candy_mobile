@@ -116,6 +116,8 @@ ReactDOM.render(<div>
         <ListItem onClick={function(){console.log('clicked');}}>列表2</ListItem>
         <ListItem onClick={function(){console.log('clicked');}}>列表3</ListItem>
         <ListItem onClick={function(){console.log('clicked');}}>列表4</ListItem>
+        <ListItem href="https://www.baidu.com">百度</ListItem>
+        <ListItem href="https://www.zhihu.com">知乎</ListItem>
     </List>
     <List title="多媒体列表">
         <ListItem icon={<i className="icon" style={{
@@ -207,6 +209,8 @@ ReactDOM.render(<div>
 
 ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
-        new Select([['选项1','选项2','选项3','选项4'],['项目1','项目2','项目3']]);
+        new Select([['选项1','选项2','选项3','选项4'],['项目1','项目2','项目3']],{
+            defaultIndex:[1,3]
+        });
     }}>打开选择器</Button>
 </div>,document.querySelector('.s-select-single'));

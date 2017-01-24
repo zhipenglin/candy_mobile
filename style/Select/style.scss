@@ -34,7 +34,6 @@
     padding: 30px 20px;
     box-sizing: border-box;
     display: flex;
-    height: 500px;
     position: relative;
     &:before{
       content:'';
@@ -49,6 +48,7 @@
       background-position: top,bottom;
       background-size: 100% 210px;
       background-repeat: no-repeat;
+      z-index: 8;
     }
     &:after{
       content:'';
@@ -62,12 +62,14 @@
       transform: translateY(-50%);
       box-sizing: border-box;
       border: solid 1PX #e4e4e4;
+      z-index: 9;
     }
   }
   &__group{
     flex: 1;
     text-align: center;
-    overflow: auto;
+    overflow: hidden;
+    height: 440px;
     background-color: #f7f7f7;
     &__inner{
       padding: 180px 0;

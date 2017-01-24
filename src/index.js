@@ -26,6 +26,8 @@ export SubmitButton from './Form/SubmitButton'
 
 export layer from './higherOrder/layer'
 
+export Scroll from './Scroll/scroll'
+
 export Pull from './Pull'
 
 export Wave from './Wave'

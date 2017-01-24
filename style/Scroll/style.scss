@@ -2,4 +2,8 @@
 
 .#{$scroll}{
   overflow: hidden;
+  height: 100%;
+  &__inner--active{
+    transition: transform 500ms;
+  }
 }
