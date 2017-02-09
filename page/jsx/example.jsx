@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select} from '../../src/index'
+import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate} from '../../src/index'
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -209,8 +209,72 @@ ReactDOM.render(<div>
 
 ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
-        new Select([['选项1','选项2','选项3','选项4'],['项目1','项目2','项目3']],{
-            defaultIndex:[1,3]
+        new Select(['选项1','选项2','选项3','选项4'],{
+            onChange:function(value) {
+              console.log(value);
+            }
         });
     }}>打开选择器</Button>
 </div>,document.querySelector('.s-select-single'));
+
+ReactDOM.render(<div>
+    <Button type="primary" size="small" onClick={function(){
+        new Select([{
+            list:['选项01','选项02','选项03','选项04'],
+            defaultIndex:1
+        },{
+            list:['选项11','选项12','选项13','选项14'],
+            defaultIndex:2
+        },{
+            list:['选项21','选项22','选项23','选项24'],
+            defaultValue:'选项24'
+        }],{
+            onChange:function(value) {
+              console.log(value);
+            }
+        });
+    }}>打开选择器</Button>
+</div>,document.querySelector('.s-select-mult'));
+
+ReactDOM.render(<div>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDate({
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>打开选择器</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDate({
+            start:new Date(),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置开始时间</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDate({
+            end:new Date(),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置结束时间</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDate({
+            current:new Date('2000-09-21'),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置当前时间</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDate({
+            dayDisplay:false,
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>隐藏日选择</Button>
+</div>,document.querySelector('.s-select-date'));
+

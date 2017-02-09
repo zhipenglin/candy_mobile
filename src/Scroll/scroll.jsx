@@ -17,6 +17,14 @@ export default class Scroll extends Component{
             deltaY:initY||0
         });
     }
+    componentDidUpdate(){
+        if(this.state.active){
+            this.notReachSide(false);
+        }
+    }
+    componentWillUnmount(){
+        cancelRaf(this.raf);
+    }
     touchStartHandler=(e)=>{
         e.preventDefault();
         this.setState({
@@ -57,16 +65,16 @@ export default class Scroll extends Component{
             },0);
         }
     }
-    notReachSide(){
+    notReachSide(trans=true){
         if(this.state.deltaY>0){
             this.setState({
                 deltaY:0,
-                active:true
+                active:trans
             });
         }else if(ReactDOM.findDOMNode(this).clientHeight-this.state.deltaY>this.refs.inner.offsetHeight){
             this.setState({
                 deltaY:ReactDOM.findDOMNode(this).clientHeight-this.refs.inner.offsetHeight,
-                active:true
+                active:trans
             });
         }else{
             return true;

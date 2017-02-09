@@ -10,89 +10,104 @@ import '../../style/Select/style.scss'
 const listHeight=window.rem?window.rem*1.0625:80;
 const Group=pure(({list,defaultIndex,onChange})=>{
     const changeHandler=(value)=>{
-        onChange(list[-value/listHeight].value);
+        var selected=list[-value/listHeight];
+        if(!selected){
+            selected=list[defaultIndex];
+        }
+        onChange(selected.value);
     }
-    return <div className="candy-mob-select__group">
-        <Scroll initY={-defaultIndex*listHeight} itemHeight={listHeight} onScrollEnd={changeHandler}>
-            <div className="candy-mob-select__group__inner" ref="inner">
-                {list.map(data=><div className="candy-mob-select__option" key={data.value} data-value={data.value}>{data.text}</div>)}
-            </div>
-        </Scroll>
-    </div>;
+    if(list&&list.length>0){
+        return <div className="candy-mob-select__group">
+            <Scroll initY={-defaultIndex*listHeight} itemHeight={listHeight} onScrollEnd={changeHandler}>
+                <div className="candy-mob-select__group__inner" ref="inner">
+                    {list.map(data=><div className="candy-mob-select__option" key={data.value} data-value={data.value}>{data.text}</div>)}
+                </div>
+            </Scroll>
+        </div>;
+    }else{
+        return null;
+    }
 });
 
 @layer
 export default class Select extends Component{
+    state={data:[]}
     constructor(){
         super();
         this.value=[];
     }
     dataFormat(data){
-        if(this._formatData){
-            return this._formatData;
-        }
-        if(!Array.isArray(data[0])){
+        if(!Array.isArray(data[0])&&!Array.isArray(data[0].list)){
             data=[data];
         }
-        data=data.filter(item=>Array.isArray(item));
-        return this._formatData=data.map(group=>{
-            return group.map(item=>{
-                if(typeof item=='string'){
-                    return {
-                        text:item,
-                        value:item
-                    }
-                }else if(item&&item.text&&item.value!==undefined){
-                    return {
-                        text:item.text,
-                        value:item.value
-                    }
-                }
-            }).filter(item=>item);
-        }).filter(group=>group&&group.length>0);
-    }
-    getDefaultIndex(){
-        const {defaultValue,defaultIndex,children}=this.props;
-        var valueArray=defaultValue,indexArray=defaultIndex,data=this.dataFormat(children);
-        if(valueArray){
-            if(!Array.isArray(valueArray)){
-                valueArray=[valueArray];
+        data=data.filter(item=>{
+            return Array.isArray(item)||Array.isArray(item.list);
+        });
+        return data.map(group=>{
+            var list=[];
+            if(Array.isArray(group)){
+                list=group;
+            }else if(Array.isArray(group.list)){
+                list=group.list;
             }
-            return data.map((group,key)=>group.indexOf(find(group,(item)=>item.value===valueArray[key]))||0);
-        }else if(indexArray){
-            if(!Array.isArray(indexArray)){
-                indexArray=[indexArray];
+            return {
+                list:list.map(item=>{
+                    if(typeof item=='string'){
+                        return {
+                            text:item,
+                            value:item
+                        }
+                    }else if(item&&item.text&&item.value!==undefined){
+                        return {
+                            text:item.text,
+                            value:item.value
+                        }
+                    }
+                }).filter(item=>item),
+                defaultIndex:group.defaultIndex,
+                defaultValue:group.defaultValue,
+                display:group.display,
+                onChange:group.onChange||function(){}
+            };
+        }).filter(group=>group.list&&group.list.length>0).map((group,i)=>{
+            var data={list:group.list,defaultIndex:0,display:group.display,onChange:group.onChange};
+            if(typeof group.defaultIndex=='number'&&group.defaultIndex>=0&&group.defaultIndex<group.list.length){
+                data.defaultIndex=group.defaultIndex;
+            }else if(group.defaultValue!==undefined){
+                let index=group.list.indexOf(find(group.list,(item)=>item.value===group.defaultValue));
+                data.defaultIndex=index<0?0:index;
             }
-            return data.map((group,key)=>{
-                if(typeof indexArray[key]=='number'&&(indexArray[key]<0||indexArray[key]>group.length-1)){
-                    return 0;
-                }
-                return indexArray[key];
-            });
-        }else{
-            return data.map(()=>0);
-        }
+            return data;
+        });
     }
     componentDidMount(){
         const {children}=this.props;
-        const defaultIndex=this.getDefaultIndex();
-        this.value=this.dataFormat(children).map((group,key)=>{
-            return group[defaultIndex[key]].value;
+        this.setState({data:this.dataFormat(children)},()=>{
+            this.value=this.state.data.map((group,key)=>{
+                return group.list[group.defaultIndex].value;
+            })
         });
     }
     changeHandler=(key,value)=>{
         this.value[key]=value;
+        this.state.data[key].onChange(this,key,value);
     }
     confirmClickHandler=()=>{
-        const {remove}=this.props;
-        console.log(this.value);
+        const {remove,onChange}=this.props;
+        typeof onChange=='function'&&onChange(this.valueOf());
         remove();
+    }
+    valueOf(){
+        if(this.value.length==1){
+            return this.value[0];
+        }else{
+            return this.value;
+        }
     }
     render(){
         const {className,remove,children}=this.props;
-        const defaultIndex=this.getDefaultIndex();
-        const optionList=this.dataFormat(children).map((group,key)=>{
-            return <Group list={group} defaultIndex={defaultIndex[key]} onChange={this.changeHandler.bind(this,key)} key={key}/>
+        const optionList=this.state.data.filter((group)=>group.display!==false).map((group,key)=>{
+            return <Group list={group.list} defaultIndex={group.defaultIndex} onChange={this.changeHandler.bind(this,key)} key={key}/>
         });
         return (
             <div className={classnames("candy-mob-select",className)}>

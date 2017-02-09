@@ -6,8 +6,7 @@
   "scripts": {
     "build": "babel src -d lib&&cross-env NODE_ENV=production webpack --progress --profile --colors",
     "babel": "babel src -d lib",
-    "webpack": "cross-env NODE_ENV=development webpack --progress --profile --colors --watch",
-    "page": "node page.publish.js"
+    "webpack": "cross-env NODE_ENV=development webpack --progress --profile --colors --watch"
   },
   "author": "linzp",
   "license": "ISC",
@@ -15,6 +14,8 @@
     "blueimp-md5": "^2.5.0",
     "classnames": "^2.2.5",
     "lodash.debounce": "^4.0.8",
+    "lodash.find": "^4.6.0",
+    "lodash.range": "^3.2.0",
     "rc-animate": "^2.3.1",
     "rc-queue-anim": "^0.13.0",
     "rc-tween-one": "^0.11.11",

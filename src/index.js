@@ -10,6 +10,7 @@ export List from './List'
 export ListItem from './List/ListItem'
 
 export Select from './Select'
+export SelectDate from './Select/SelectDate'
 
 export autoPrefix from './fn/autoPrefixer'
 export dom from './fn/dom'
