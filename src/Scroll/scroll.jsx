@@ -18,8 +18,13 @@ export default class Scroll extends Component{
         });
     }
     componentDidUpdate(){
+        const {onScrollEnd}=this.props;
         if(this.state.active){
-            this.notReachSide(false);
+            if(!this.notReachSide(false)){
+                setTimeout(()=>{
+                    onScrollEnd(this.state.deltaY);
+                },0);
+            }
         }
     }
     componentWillUnmount(){

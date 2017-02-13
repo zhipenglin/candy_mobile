@@ -8,7 +8,7 @@ import Scroll from '../Scroll/scroll'
 import '../../style/Select/style.scss'
 
 const listHeight=window.rem?window.rem*1.0625:80;
-const Group=pure(({list,defaultIndex,onChange})=>{
+const Group=pure(({list,defaultIndex,onChange,className})=>{
     const changeHandler=(value)=>{
         var selected=list[-value/listHeight];
         if(!selected){
@@ -17,7 +17,7 @@ const Group=pure(({list,defaultIndex,onChange})=>{
         onChange(selected.value);
     }
     if(list&&list.length>0){
-        return <div className="candy-mob-select__group">
+        return <div className={classnames("candy-mob-select__group",className)}>
             <Scroll initY={-defaultIndex*listHeight} itemHeight={listHeight} onScrollEnd={changeHandler}>
                 <div className="candy-mob-select__group__inner" ref="inner">
                     {list.map(data=><div className="candy-mob-select__option" key={data.value} data-value={data.value}>{data.text}</div>)}
@@ -67,10 +67,11 @@ export default class Select extends Component{
                 defaultIndex:group.defaultIndex,
                 defaultValue:group.defaultValue,
                 display:group.display,
+                className:group.className,
                 onChange:group.onChange||function(){}
             };
         }).filter(group=>group.list&&group.list.length>0).map((group,i)=>{
-            var data={list:group.list,defaultIndex:0,display:group.display,onChange:group.onChange};
+            var data={list:group.list,defaultIndex:0,display:group.display,className:group.className,onChange:group.onChange};
             if(typeof group.defaultIndex=='number'&&group.defaultIndex>=0&&group.defaultIndex<group.list.length){
                 data.defaultIndex=group.defaultIndex;
             }else if(group.defaultValue!==undefined){
@@ -107,7 +108,7 @@ export default class Select extends Component{
     render(){
         const {className,remove,children}=this.props;
         const optionList=this.state.data.filter((group)=>group.display!==false).map((group,key)=>{
-            return <Group list={group.list} defaultIndex={group.defaultIndex} onChange={this.changeHandler.bind(this,key)} key={key}/>
+            return <Group className={group.className} list={group.list} defaultIndex={group.defaultIndex} onChange={this.changeHandler.bind(this,key)} key={key}/>
         });
         return (
             <div className={classnames("candy-mob-select",className)}>

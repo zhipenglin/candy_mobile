@@ -71,6 +71,18 @@
     overflow: hidden;
     height: 440px;
     background-color: #f7f7f7;
+    &--time{
+      position: relative;
+      &:after{
+        content:':';
+        display: block;
+        position: absolute;
+        top:50%;
+        right:0;
+        font-weight: bold;
+        transform: translate(-50%,-60%);
+      }
+    }
     &__inner{
       padding: 180px 0;
     }

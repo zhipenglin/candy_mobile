@@ -4,27 +4,41 @@
 import range from 'lodash.range'
 import Select from './index'
 
-export default class SelectDate extends Select{
+export class SelectDateCore extends Select{
     constructor(options){
-        var {start,end,current,onChange,yearDisplay,monthDisplay,dayDisplay}=Object.assign({},{start:new Date('1949-10-01'),end:new Date('2050-12-31'),yearDisplay:true,monthDisplay:true,dayDisplay:true,current:new Date(),onChange:function(){}},options);
-        if(!start instanceof Date){
-            if(new Date(start).toString()=='Invalid Date'){
-                start=new Date('1949-01-01');
+        var {start,end,current,onChange,yearDisplay,monthDisplay,dayDisplay,timeDisplay}=Object.assign({},{
+            start:new Date('1949-10-01 0:00'),
+            end:new Date('2050-12-31 23:59'),
+            yearDisplay:true,
+            monthDisplay:true,
+            dayDisplay:true,
+            timeDisplay:true,
+            current:new Date(),
+            onChange:function(){}
+        },options);
+        if(!(start instanceof Date)){
+            if(/[0-2]{1}[0-3]{1}:[0-5]{1}\d{1}/.test(start)){
+                start=new Date(`${SelectDateCore.dateFormat(new Date(),'yyyy-MM-dd')} ${start}`);
+            }else if(new Date(start).toString()=='Invalid Date'){
+                start=new Date('1949-01-01 0:00');
             }else{
                 start=new Date(start);
             }
         }
 
-        if(!end instanceof Date){
-            if(new Date(end).toString()=='Invalid Date'){
+        if(!(end instanceof Date)){
+            if(/[0-2]{1}[0-3]{1}:[0-5]{1}\d{1}/.test(end)){
+                end=new Date(`${SelectDateCore.dateFormat(new Date(),'yyyy-MM-dd')} ${end}`);
+            }else if(new Date(end).toString()=='Invalid Date'){
                 end=new Date();
             }else{
                 end=new Date(end);
             }
         }
-
-        if(!current instanceof Date){
-            if(new Date(current).toString()=='Invalid Date'){
+        if(!(current instanceof Date)){
+            if(/[0-2]{1}[0-3]{1}:[0-5]{1}\d{1}/.test(current)){
+                current=new Date(`${SelectDateCore.dateFormat(new Date(),'yyyy-MM-dd')} ${current}`);
+            }else if(new Date(current).toString()=='Invalid Date'){
                 current=new Date();
             }else{
                 current=new Date(current);
@@ -37,8 +51,10 @@ export default class SelectDate extends Select{
 
         var onChangeHandler=(target)=>{
             var data=target.state.data;
-            data[1].list=SelectDate.getMonthList(target.value[0],start,end);
-            data[2].list=SelectDate.getDayList(target.value,start,end);
+            data[1].list=SelectDateCore.getMonthList(target.value,start,end);
+            data[2].list=SelectDateCore.getDayList(target.value,start,end);
+            data[3].list=SelectDateCore.getHour(target.value,start,end);
+            data[4].list=SelectDateCore.getMinute(target.value,start,end);
             data=target.dataFormat(data);
             target.setState({
                 data:data
@@ -55,18 +71,60 @@ export default class SelectDate extends Select{
             display:yearDisplay,
             onChange:onChangeHandler
         },{
-            list:SelectDate.getMonthList(current.getFullYear(),start,end),
+            list:SelectDateCore.getMonthList([current.getFullYear()],start,end),
             defaultValue:current.getMonth()+1,
             display:monthDisplay,
             onChange:onChangeHandler
         },{
-            list:SelectDate.getDayList([current.getFullYear(),current.getMonth()+1],start,end),
+            list:SelectDateCore.getDayList([current.getFullYear(),current.getMonth()+1],start,end),
             display:dayDisplay,
-            defaultValue:current.getDate()
+            defaultValue:current.getDate(),
+            onChange:onChangeHandler
+        },{
+            list:SelectDateCore.getHour([current.getFullYear(),current.getMonth()+1,current.getDate()],start,end),
+            display:timeDisplay,
+            className:'candy-mob-select__group--time',
+            defaultValue:current.getHours(),
+            onChange:onChangeHandler
+        },{
+            list:SelectDateCore.getMinute([current.getFullYear(),current.getMonth()+1,current.getDate(),current.getHours()],start,end),
+            display:timeDisplay,
+            defaultValue:current.getMinutes()
         }],{
             onChange:(value)=>{
-                onChange(new Date(value));
+                value[1]-=1;
+                onChange(new Date(...value));
             }
+        });
+    }
+    static getMinute([year,month,day,hour],start,end){
+        var startMinute=0,endMinute=59;
+        if(year==start.getFullYear()&&month==start.getMonth()+1&&day==start.getDate()&&hour==start.getHours()){
+            startMinute=Math.max(startMinute,start.getMinutes());
+        }
+        if(year==end.getFullYear()&&month==end.getMonth()+1&&day==end.getDate()&&hour==end.getHours()){
+            endMinute=Math.min(endMinute,end.getMinutes());
+        }
+        return range(startMinute,endMinute+1).map((n)=>{
+            return {
+                value:n,
+                text:SelectDateCore.timeFormat(n)
+            };
+        });
+    }
+    static getHour([year,month,day],start,end){
+        var startHour=0,endHour=23;
+        if(year==start.getFullYear()&&month==start.getMonth()+1&&day==start.getDate()){
+            startHour=Math.max(startHour,start.getHours());
+        }
+        if(year==end.getFullYear()&&month==end.getMonth()+1&&day==end.getDate()){
+            endHour=Math.min(endHour,end.getHours());
+        }
+        return range(startHour,endHour+1).map((n)=>{
+            return {
+                value:n,
+                text:SelectDateCore.timeFormat(n)
+            };
         });
     }
     static getDayList([year,month],start,end) {
@@ -97,7 +155,7 @@ export default class SelectDate extends Select{
             return getList(31);
         }
     }
-    static getMonthList(currentYear,start,end){
+    static getMonthList([currentYear],start,end){
         var startMonth=1,endMonth=12;
         if(currentYear==start.getFullYear()){
             startMonth=start.getMonth()+1;
@@ -111,6 +169,10 @@ export default class SelectDate extends Select{
                 text: `${n}月`
             }
         });
+    }
+    static timeFormat(value){
+        var map=['00','01','02','03','04','05','06','07','08','09'];
+        return map[value]||value.toString();
     }
     static dateFormat(date,fmt='yyyy-MM-dd'){
         var o = {
@@ -126,5 +188,52 @@ export default class SelectDate extends Select{
         for (var k in o)
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
+    }
+}
+
+export default class SelectDate extends SelectDateCore{
+    constructor(options){
+        super(Object.assign({},options,{
+            start:'',
+            end:'',
+            yearDisplay:true,
+            monthDisplay:true,
+            timeDisplay:false,
+            onChange(value){
+                var fmt='yyyy-MM-dd';
+                if(!options.dayDisplay){
+                    fmt='yyyy-MM';
+                }
+                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,fmt));
+            }
+        }));
+    }
+}
+
+export class SelectDateTime extends SelectDateCore{
+    constructor(options){
+        super(Object.assign({},options,{
+            yearDisplay:true,
+            monthDisplay:true,
+            dayDisplay:true,
+            timeDisplay:true,
+            onChange(value){
+                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,'yyyy-MM-dd hh:mm'));
+            }
+        }));
+    }
+}
+
+export class SelectTime extends SelectDateCore{
+    constructor(options){
+        super(Object.assign({},options,{
+            yearDisplay:false,
+            monthDisplay:false,
+            dayDisplay:false,
+            timeDisplay:true,
+            onChange(value){
+                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,'hh:mm'));
+            }
+        }));
     }
 }

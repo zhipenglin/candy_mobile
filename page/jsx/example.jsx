@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate} from '../../src/index'
+import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate,SelectDateTime,SelectTime} from '../../src/index'
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -277,4 +277,72 @@ ReactDOM.render(<div>
         });
     }}>隐藏日选择</Button>
 </div>,document.querySelector('.s-select-date'));
+
+ReactDOM.render(<div>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectTime({
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>打开选择器</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectTime({
+            start:new Date(),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置开始时间</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectTime({
+            end:new Date(),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置结束时间</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectTime({
+            current:'10:30',
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置当前时间</Button>
+</div>,document.querySelector('.s-select-time'));
+
+ReactDOM.render(<div>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDateTime({
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>打开选择器</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDateTime({
+            start:new Date(),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置开始时间</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDateTime({
+            end:new Date(),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置结束时间</Button>
+    <Button type="primary" size="small" onClick={function(){
+        new SelectDateTime({
+            current:new Date('2000-09-21 10:30'),
+            onChange:function(value){
+                console.log(value);
+            }
+        });
+    }}>设置当前时间</Button>
+</div>,document.querySelector('.s-select-datetime'));
 
