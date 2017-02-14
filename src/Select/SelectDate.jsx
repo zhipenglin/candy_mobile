@@ -201,7 +201,7 @@ export default class SelectDate extends SelectDateCore{
             timeDisplay:false,
             onChange(value){
                 var fmt='yyyy-MM-dd';
-                if(!options.dayDisplay===false){
+                if(options.dayDisplay===false){
                     fmt='yyyy-MM';
                 }
                 options.onChange&&options.onChange(SelectDateCore.dateFormat(value,fmt));
