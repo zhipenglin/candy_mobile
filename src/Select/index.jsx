@@ -106,7 +106,7 @@ export default class Select extends Component{
         }
     }
     render(){
-        const {className,remove,children}=this.props;
+        const {className,remove,title,children}=this.props;
         const optionList=this.state.data.map((group,key)=>{
             if(group.display===false){
                 return null;
@@ -118,7 +118,7 @@ export default class Select extends Component{
                 <div className="candy-mob-select__inner">
                     <div className="candy-mob-select__title">
                         <Button type="ghost" size="mini" onClick={remove}>取消</Button>
-                        <div className="candy-mob-select__title__center">请选择</div>
+                        <div className="candy-mob-select__title__center">{title?title:'请选择'}</div>
                         <Button type="ghost" size="mini" onClick={this.confirmClickHandler}>确定</Button>
                     </div>
                     <div className="candy-mob-select__content">

@@ -6,7 +6,7 @@ import Select from './index'
 
 export class SelectDateCore extends Select{
     constructor(options){
-        var {start,end,current,onChange,yearDisplay,monthDisplay,dayDisplay,timeDisplay}=Object.assign({},{
+        var {start,end,current,onChange,yearDisplay,monthDisplay,dayDisplay,timeDisplay,title}=Object.assign({},{
             start:'1949-10-01 0:00',
             end:'2050-12-31 23:59',
             yearDisplay:true,
@@ -14,6 +14,7 @@ export class SelectDateCore extends Select{
             dayDisplay:true,
             timeDisplay:true,
             current:new Date(),
+            title:'',
             onChange:function(){}
         },options);
 
@@ -66,6 +67,7 @@ export class SelectDateCore extends Select{
             display:timeDisplay,
             defaultValue:current.getMinutes()
         }],{
+            title:title,
             onChange:(value)=>{
                 value[1]-=1;
                 onChange(new Date(...value));

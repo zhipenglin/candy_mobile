@@ -239,6 +239,7 @@ ReactDOM.render(<div>
 ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDate({
+            title:'日期选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -247,6 +248,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDate({
             start:new Date(),
+            title:'日期选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -255,6 +257,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDate({
             end:new Date(),
+            title:'日期选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -263,6 +266,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDate({
             current:'2000-09-21',
+            title:'日期选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -271,6 +275,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDate({
             dayDisplay:false,
+            title:'日期选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -281,6 +286,7 @@ ReactDOM.render(<div>
 ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectTime({
+            title:'时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -289,6 +295,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectTime({
             start:new Date(),
+            title:'时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -297,6 +304,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectTime({
             end:new Date(),
+            title:'时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -305,6 +313,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectTime({
             current:'10:30',
+            title:'时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -315,6 +324,7 @@ ReactDOM.render(<div>
 ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDateTime({
+            title:'日期时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -323,6 +333,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDateTime({
             start:new Date(),
+            title:'日期时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -331,6 +342,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDateTime({
             end:new Date(),
+            title:'日期时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
@@ -339,6 +351,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDateTime({
             current:'2000-09-21 10:30',
+            title:'日期时间选择器',
             onChange:function(value){
                 new Toast(value,{type:'success'});
             }
