@@ -86,7 +86,7 @@ export default class Select extends Component{
         this.setState({data:this.dataFormat(children)},()=>{
             this.value=this.state.data.map((group,key)=>{
                 return group.list[group.defaultIndex].value;
-            })
+            });
         });
     }
     changeHandler=(key,value)=>{
@@ -107,7 +107,10 @@ export default class Select extends Component{
     }
     render(){
         const {className,remove,children}=this.props;
-        const optionList=this.state.data.filter((group)=>group.display!==false).map((group,key)=>{
+        const optionList=this.state.data.map((group,key)=>{
+            if(group.display===false){
+                return null;
+            }
             return <Group className={group.className} list={group.list} defaultIndex={group.defaultIndex} onChange={this.changeHandler.bind(this,key)} key={key}/>
         });
         return (

@@ -7,8 +7,8 @@ import Select from './index'
 export class SelectDateCore extends Select{
     constructor(options){
         var {start,end,current,onChange,yearDisplay,monthDisplay,dayDisplay,timeDisplay}=Object.assign({},{
-            start:new Date('1949-10-01 0:00'),
-            end:new Date('2050-12-31 23:59'),
+            start:'1949-10-01 0:00',
+            end:'2050-12-31 23:59',
             yearDisplay:true,
             monthDisplay:true,
             dayDisplay:true,
@@ -16,35 +16,10 @@ export class SelectDateCore extends Select{
             current:new Date(),
             onChange:function(){}
         },options);
-        if(!(start instanceof Date)){
-            if(/[0-2]{1}[0-3]{1}:[0-5]{1}\d{1}/.test(start)){
-                start=new Date(`${SelectDateCore.dateFormat(new Date(),'yyyy-MM-dd')} ${start}`);
-            }else if(new Date(start).toString()=='Invalid Date'){
-                start=new Date('1949-01-01 0:00');
-            }else{
-                start=new Date(start);
-            }
-        }
 
-        if(!(end instanceof Date)){
-            if(/[0-2]{1}[0-3]{1}:[0-5]{1}\d{1}/.test(end)){
-                end=new Date(`${SelectDateCore.dateFormat(new Date(),'yyyy-MM-dd')} ${end}`);
-            }else if(new Date(end).toString()=='Invalid Date'){
-                end=new Date();
-            }else{
-                end=new Date(end);
-            }
-        }
-        if(!(current instanceof Date)){
-            if(/[0-2]{1}[0-3]{1}:[0-5]{1}\d{1}/.test(current)){
-                current=new Date(`${SelectDateCore.dateFormat(new Date(),'yyyy-MM-dd')} ${current}`);
-            }else if(new Date(current).toString()=='Invalid Date'){
-                current=new Date();
-            }else{
-                current=new Date(current);
-            }
-        }
-
+        start=SelectDateCore.dateValue(start,'1949-01-01 0:00');
+        end=SelectDateCore.dateValue(end,'2050-12-31 23:59');
+        current=SelectDateCore.dateValue(current);
         if(start-end>0){
             throw new Error('开始时间不能大于结束时间');
         }
@@ -188,6 +163,31 @@ export class SelectDateCore extends Select{
         for (var k in o)
             if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
         return fmt;
+    }
+    static dateValue(value,defaultTime){
+        var transform=function(date) {
+            if(new Date(date).toString()!='Invalid Date'){
+                return new Date(date);
+            }
+            var res=new Date();
+            if (/^([0-2]{1}[0-3]{1}):([0-5]{1}\d{1})$/.test(date)) {
+                let m = date.match(/^([0-2]{1}[0-3]{1}):([0-5]{1}\d{1})$/);
+                res.setHours(m[1]);
+                res.setMinutes(m[2]);
+            } else if (/^(\d{4})(?:\-|\/)(\d{1,2})(?:\-|\/)(\d{1,2})(?: ([0-9]{1,2}):([0-9]{1,2}))?$/.test(date)) {
+                let m = date.match(/^(\d{4})(?:\-|\/)(\d{1,2})(?:\-|\/)(\d{1,2})(?: ([0-9]{1,2}):([0-9]{1,2}))?$/);
+                res = new Date(m[1], m[2] - 1, m[3], m[4]||0, m[5]||0);
+            }
+            return res;
+        }
+        if(!(value instanceof Date&&value.toString()!='Invalid Date')){
+            if(new Date(value).toString()=='Invalid Date'){
+                return transform(value?value:defaultTime);
+            }else{
+                return transform(value);
+            }
+        }
+        return value;
     }
 }
 

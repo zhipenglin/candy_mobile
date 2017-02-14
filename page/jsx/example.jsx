@@ -211,7 +211,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new Select(['选项1','选项2','选项3','选项4'],{
             onChange:function(value) {
-              console.log(value);
+              new Toast(value,{type:'success'});
             }
         });
     }}>打开选择器</Button>
@@ -230,7 +230,7 @@ ReactDOM.render(<div>
             defaultValue:'选项24'
         }],{
             onChange:function(value) {
-              console.log(value);
+              new Toast(value,{type:'success'});
             }
         });
     }}>打开选择器</Button>
@@ -240,7 +240,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDate({
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>打开选择器</Button>
@@ -248,7 +248,7 @@ ReactDOM.render(<div>
         new SelectDate({
             start:new Date(),
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置开始时间</Button>
@@ -256,15 +256,15 @@ ReactDOM.render(<div>
         new SelectDate({
             end:new Date(),
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置结束时间</Button>
     <Button type="primary" size="small" onClick={function(){
         new SelectDate({
-            current:new Date('2000-09-21'),
+            current:'2000-09-21',
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置当前时间</Button>
@@ -272,7 +272,7 @@ ReactDOM.render(<div>
         new SelectDate({
             dayDisplay:false,
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>隐藏日选择</Button>
@@ -282,7 +282,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectTime({
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>打开选择器</Button>
@@ -290,7 +290,7 @@ ReactDOM.render(<div>
         new SelectTime({
             start:new Date(),
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置开始时间</Button>
@@ -298,7 +298,7 @@ ReactDOM.render(<div>
         new SelectTime({
             end:new Date(),
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置结束时间</Button>
@@ -306,7 +306,7 @@ ReactDOM.render(<div>
         new SelectTime({
             current:'10:30',
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置当前时间</Button>
@@ -316,7 +316,7 @@ ReactDOM.render(<div>
     <Button type="primary" size="small" onClick={function(){
         new SelectDateTime({
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>打开选择器</Button>
@@ -324,7 +324,7 @@ ReactDOM.render(<div>
         new SelectDateTime({
             start:new Date(),
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置开始时间</Button>
@@ -332,15 +332,15 @@ ReactDOM.render(<div>
         new SelectDateTime({
             end:new Date(),
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置结束时间</Button>
     <Button type="primary" size="small" onClick={function(){
         new SelectDateTime({
-            current:new Date('2000-09-21 10:30'),
+            current:'2000-09-21 10:30',
             onChange:function(value){
-                console.log(value);
+                new Toast(value,{type:'success'});
             }
         });
     }}>设置当前时间</Button>
