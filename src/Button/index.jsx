@@ -29,7 +29,7 @@ export default class Button extends Component{
     }
     render(){
         const {className,disabled,onClick,size,children,type,...reset}=this.props;
-        return <a className={classnames('candy-mob-button',{
+        return <div className={classnames('candy-mob-button',{
             'candy-mob-button--disabled':disabled,
             'candy-mob-button--primary':type=='primary',
             'candy-mob-button--ghost':type=='ghost',
@@ -41,6 +41,6 @@ export default class Button extends Component{
             <Touch onTap={this.clickHandler} onTouchStart={this.touchStartHandler} onTouchEnd={this.touchEndHandler} onTouchCancel={this.touchEndHandler}>
                 <Wave white={type=='primary'} disabled={disabled} outside={type=='link'||size=='mini'}>{children}</Wave>
             </Touch>
-        </a>
+        </div>
     }
 }
