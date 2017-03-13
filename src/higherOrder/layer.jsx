@@ -31,7 +31,7 @@ export default function(ComposedComponent){
                         <div className={classnames("candy-mob-layer__cover",{
                             "candy-mob-layer__cover--transparent":ComposedComponent.coverHide
                         })} onTouchStart={this.touchStartHandler}></div>
-                        <ComposedComponent className="candy-mob-layer__content" remove={this.remove} {...this.options}>{this.text}</ComposedComponent>
+                        <ComposedComponent className="candy-mob-layer__content" {...this.options} remove={this.remove}>{this.text}</ComposedComponent>
                     </div>:null}
                 </Animate>
             , this._layer);

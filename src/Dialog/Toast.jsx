@@ -10,10 +10,13 @@ export default class Toast extends Component{
         time:2000
     }
     componentDidMount(){
-        const {remove,time}=this.props;
+        const {remove,callback,time}=this.props;
         if(time){
             this.timer=setTimeout(()=>{
                 remove();
+                if(typeof callback=='function'){
+                    callback();
+                }
             },time);
         }
     }
