@@ -7,8 +7,11 @@ import Button from '../Button'
 import Scroll from '../Scroll/scroll'
 import '../../style/Select/style.scss'
 
-const listHeight=window.rem?window.rem*1.0625:80;
+var listHeight;
 const Group=pure(({list,defaultIndex,onChange,className})=>{
+    if(!listHeight){
+        listHeight=window.rem?window.rem*1.0625:80
+    }
     const changeHandler=(value)=>{
         var selected=list[-value/listHeight];
         if(!selected){

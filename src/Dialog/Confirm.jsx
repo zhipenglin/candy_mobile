@@ -8,7 +8,7 @@ import layer from '../higherOrder/layer'
 import '../../style/Dialog/confirm.scss'
 import Button from '../Button'
 
-export default layer(pure(({className,title,cancelCallback,confirmCallback,textCancel,callbackConfirm,textConfirm,remove,children})=>{
+export default layer(pure(({className,title,cancelCallback,confirmCallback,textCancel,textConfirm,remove,children})=>{
     var cancelClickHandler=()=>{
         if(typeof cancelCallback=='function'){
             if(cancelCallback(remove)!==false){

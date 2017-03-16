@@ -10,7 +10,9 @@ export default class Action extends Component{
     actionClickHandler=(callback)=>{
         const {remove}=this.props;
         if(typeof callback=='function'){
-            callback(remove);
+            if(callback(remove)!==false){
+                remove();
+            }
         }else{
             remove();
         }
