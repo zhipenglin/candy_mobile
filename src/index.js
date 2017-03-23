@@ -23,10 +23,8 @@ export fetch from './fn/fetch'
 export transitions from './fn/transitions'
 
 export Form from './Form'
-export active from './Form/active'
-export field from './Form/field'
 export Input from './Form/Input'
-export PassWord from './Form/PassWord'
+export SelectField from './Form/SelectField'
 export SubmitButton from './Form/SubmitButton'
 
 export layer from './higherOrder/layer'

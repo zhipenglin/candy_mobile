@@ -65,6 +65,13 @@
       z-index: 9;
     }
   }
+  &__close{
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom: 0;
+  }
   &__group{
     flex: 1;
     text-align: center;

@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate,SelectDateTime,SelectTime} from '../../src/index'
+import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate,SelectDateTime,SelectTime,Form,Input,SubmitButton,SelectField} from '../../src/index'
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -358,4 +358,18 @@ ReactDOM.render(<div>
         });
     }}>设置当前时间</Button>
 </div>,document.querySelector('.s-select-datetime'));
+
+ReactDOM.render(<div>
+    <Form inline>
+        <Input name="name" rule="req email" label="用户名" placeholder="请输入用户名"/>
+        <div>
+            <Input name="tel" rule="req tel" label="手机号" placeholder="请输入手机号"/>
+        </div>
+        <Input type="password" name="pwd" rule="req 1-10" label="密码" placeholder="请输入密码"/>
+        <Input type="textarea" name="des" rule="req 1-100" label="简介" placeholder="请输入简介" maxLength={100}/>
+        <SelectField name="select" label="多项选择" rule="req">{[['选项1','选项2','选项3','选项4'],['选项1','选项2','选项3','选项4']]}</SelectField>
+        <SelectField name="select2" label="选择" placeholder="请选择一项">{['选项1','选项2','选项3','选项4']}</SelectField>
+        <SubmitButton>提交</SubmitButton>
+    </Form>
+</div>,document.querySelector('.s-form-input'));
 

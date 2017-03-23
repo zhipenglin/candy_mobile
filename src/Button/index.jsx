@@ -37,7 +37,7 @@ export default class Button extends Component{
             'candy-mob-button--small':size=='small',
             'candy-mob-button--mini':size=='mini',
             'candy-mob-button--press':this.state.press
-        },className)} {...reset}>
+        },className)}>
             <Touch onTap={this.clickHandler} onTouchStart={this.touchStartHandler} onTouchEnd={this.touchEndHandler} onTouchCancel={this.touchEndHandler}>
                 {noWave===true?children:<Wave white={type=='primary'} disabled={disabled} outside={type=='link'||size=='mini'}>{children}</Wave>}
             </Touch>

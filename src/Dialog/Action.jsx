@@ -1,6 +1,5 @@
 import React,{Component} from 'react'
 import classnames from 'classnames'
-import {pure,nest} from 'recompose'
 import layer from '../higherOrder/layerTouchClose'
 import '../../style/Dialog/action.scss'
 import Button from '../Button'

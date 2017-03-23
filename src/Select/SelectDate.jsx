@@ -1,7 +1,7 @@
 /**
  * Created by ifchangetoclzp on 2017/2/6.
  */
-import range from 'lodash.range'
+import range from 'lodash/range'
 import Select from './index'
 
 export class SelectDateCore extends Select{

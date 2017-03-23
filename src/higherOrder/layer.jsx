@@ -6,18 +6,20 @@ import Animate from 'rc-animate';
 
 export default function(ComposedComponent){
     return class Layer{
-        constructor(text,options){
+        constructor(children,options){
             this._layer=document.createElement('div');
             this._layer.className='candy-mob-layer-set';
             document.body.appendChild(this._layer);
 
             this.options=Object.assign({},options);
-            this.text=text;
+            this.children=children;
             this.isShow=false;
-            this.show();
+            if(this.options.persistent!==true){
+                this.show();
+            }
         }
         animateEndHandler=()=>{
-            if(!this.isShow){
+            if(!this.isShow&&this.options.persistent!==true){
                 this.destroy();
             }
         }
@@ -27,11 +29,11 @@ export default function(ComposedComponent){
         _render(){
             ReactDOM.render(
                 <Animate className="candy-mob-layer" transitionName="candy-mob-layer--animate" onEnd={this.animateEndHandler}>
-                    {this.isShow?<div>
+                    {this.isShow?<div className="candy-mob-layer__inner">
                         <div className={classnames("candy-mob-layer__cover",{
                             "candy-mob-layer__cover--transparent":ComposedComponent.coverHide
                         })} onTouchStart={this.touchStartHandler}></div>
-                        <ComposedComponent className="candy-mob-layer__content" {...this.options} remove={this.remove}>{this.text}</ComposedComponent>
+                        <ComposedComponent className="candy-mob-layer__content" {...this.options} remove={this.remove}>{this.children}</ComposedComponent>
                     </div>:null}
                 </Animate>
             , this._layer);
@@ -42,6 +44,14 @@ export default function(ComposedComponent){
         }
         get isShow(){
             return this._isShow;
+        }
+        change({children,options}){
+            if(children!==undefined){
+                this.children=children;
+            }
+            if(typeof options=='object'){
+                this.options=Object.assign({},this.options,options);
+            }
         }
         show=()=>{
             if(!this.isShow){
