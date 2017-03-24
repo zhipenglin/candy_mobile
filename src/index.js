@@ -16,6 +16,8 @@ export const SelectDateTime=_SelectDateTime;
 import {SelectTime  as _SelectTime} from './Select/SelectDate'
 export const SelectTime=_SelectTime;
 
+export Switch from './Switch'
+
 export autoPrefix from './fn/autoPrefixer'
 export dom from './fn/dom'
 export fetch from './fn/fetch'
@@ -25,6 +27,7 @@ export transitions from './fn/transitions'
 export Form from './Form'
 export Input from './Form/Input'
 export SelectField from './Form/SelectField'
+export SwitchField from './Form/SwitchField'
 export SubmitButton from './Form/SubmitButton'
 
 export layer from './higherOrder/layer'

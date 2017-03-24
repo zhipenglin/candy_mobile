@@ -1,16 +1,16 @@
 @import "../name-space";
 @import "../fn";
 .#{$field}{
+  font-size: 28px;
   padding: 10px 40px;
   &__inner{
     @include line-bottom;
-    font-size: 30px;
     textarea,input{
       color:#333;
       border: none;
       padding: 25px 6px;
       box-sizing: border-box;
-      font-size: 30px;
+      font-size: 28px;
       width: 100%;
       background: transparent;
       line-height:40px;

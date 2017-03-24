@@ -1,0 +1,59 @@
+@import "../name-space";
+
+.#{$switch}{
+  font-size: 28px;
+  display: inline-block;
+  padding-right: 20px;
+  &__inner{
+    display: inline-block;
+    position: relative;
+    width: 130px;
+    height: 70px;
+    line-height: 70px;
+    border: solid 1PX #DFDFDF;
+    border-radius: 35px;
+    overflow: hidden;
+    margin-right: 20px;
+    vertical-align: middle;
+  }
+  &__button{
+    &:after{
+      content:'';
+      display:block;
+      width: 70px;
+      height: 70px;
+      border-radius: 35px;
+      background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+    &:before{
+      content:'';
+      display: block;
+      width: 95px;
+      height: 70px;
+      border-top-right-radius:35px;
+      border-bottom-right-radius:35px;
+      background: #fff;
+      position: absolute;
+      top:0px;
+      left: 35px;
+      transform-origin: 0% 50%;
+      transition: transform 350ms cubic-bezier(0.4, 0.4, 0.25, 1.35);
+    }
+    position: relative;
+    transition: transform 350ms cubic-bezier(0.4, 0.4, 0.25, 1.35);
+  }
+  &--open{
+    .#{$switch}__inner{
+      background-color: #ff8831;
+      border-color:#ff8831;
+    }
+    .#{$switch}__button{
+      transform: translateX(60px);
+      &:before{
+        transform: scale(0);
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@
  */
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate,SelectDateTime,SelectTime,Form,Input,SubmitButton,SelectField} from '../../src/index'
+import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate,SelectDateTime,SelectTime,Form,Input,SubmitButton,SelectField,SwitchField} from '../../src/index'
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -369,6 +369,7 @@ ReactDOM.render(<div>
         <Input type="textarea" name="des" rule="req 1-100" label="简介" placeholder="请输入简介" maxLength={100}/>
         <SelectField name="select" label="多项选择" rule="req">{[['选项1','选项2','选项3','选项4'],['选项1','选项2','选项3','选项4']]}</SelectField>
         <SelectField name="select2" label="选择" placeholder="请选择一项">{['选项1','选项2','选项3','选项4']}</SelectField>
+        <SwitchField name="sex" label="性别" openLabel="男" closeLabel="女"></SwitchField>
         <SubmitButton>提交</SubmitButton>
     </Form>
 </div>,document.querySelector('.s-form-input'));
