@@ -34,6 +34,9 @@
         }
         input{
         }
+        .#{$switch}{
+          padding: 0 6px;
+        }
       }
       &__msg{
         display: none;
