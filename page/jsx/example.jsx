@@ -360,7 +360,7 @@ ReactDOM.render(<div>
 </div>,document.querySelector('.s-select-datetime'));
 
 ReactDOM.render(<div>
-    <Form inline>
+    <Form>
         <Input name="name" rule="req email" label="用户名" placeholder="请输入用户名"/>
         <div>
             <Input name="tel" rule="req tel" label="手机号" placeholder="请输入手机号"/>

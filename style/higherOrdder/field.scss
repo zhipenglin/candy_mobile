@@ -18,6 +18,9 @@
         outline: none;
       }
     }
+    .#{$switch}{
+      padding: 25px 6px;
+    }
     .font-number{
       color: #ff8831;
       font-size: 24px;
