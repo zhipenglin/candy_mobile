@@ -41,24 +41,15 @@ export default function field(MiddleComponent){
             });
             this.setState({status:1});
         }
-        onActiveChange(event){
-            const {onFocus,onBlur}=this.props;
-            if(event.type=='focus'){
-                this.setState({
-                    active:true
-                });
-                typeof onFocus=='function'&&onFocus(event);
-            }else if(event.type=='blur'){
-                this.setState({
-                    active:false
-                });
-                typeof onBlur=='function'&&onBlur(event);
-            }
+        onActiveChange(status=false){
+            this.setState({
+                active:!!status
+            });
         }
         render(){
             const {value,dispatch,data,name,rule,label,extra,...others}=this.props;
             return (
-                <MiddleComponent {...others} label={label} active={this.state.active} value={this.state.value} status={this.state.status} errMsg={this.state.errMsg} onValueChange={this.onValueChangeHandler} onFocus={this.onActiveChange} onBlur={this.onActiveChange}/>
+                <MiddleComponent {...others} label={label} active={this.state.active} value={this.state.value} status={this.state.status} errMsg={this.state.errMsg} onValueChange={this.onValueChangeHandler} onActiveChange={this.onActiveChange}/>
             );
         }
     }

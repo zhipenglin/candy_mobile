@@ -15,17 +15,21 @@ export default class SelectField extends PureComponent{
         this.clickHandler=this.clickHandler.bind(this);
     }
     componentWillMount(){
-        const {value,children,onValueChange,...others}=this.props;
+        const {value,children,onValueChange,onActiveChange,...others}=this.props;
         this.selectData=dataFormat(children);
         this.setDefaultValue();
         this.select=new Select(this.selectData,{onChange:(value,data)=>{
             onValueChange(value);
+            onActiveChange();
             this.select.change({children:data});
         },onCancel:()=>{
             onValueChange();
+            onActiveChange();
         },persistent:true,...others});
     }
     clickHandler(){
+        const {onActiveChange}=this.props;
+        onActiveChange(true);
         this.select.show();
     }
     setDefaultValue(){

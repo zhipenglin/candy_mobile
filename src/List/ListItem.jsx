@@ -33,6 +33,9 @@ export default class ListItem extends Component{
             let distance=this.state.menuX+superEvent.deltaX;
             if(distance<-this.refs.item_menu.offsetWidth-20||distance>20){
                 return;
+            }else if(Math.abs(superEvent.distanceX)<Math.abs(superEvent.distanceY)){
+                this.closeMenu();
+                return;
             }
             this.setState({
                 menuX:distance
