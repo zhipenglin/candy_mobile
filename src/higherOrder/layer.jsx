@@ -57,8 +57,10 @@ export default function(ComposedComponent){
             if(!this.isShow){
                 this.isShow=true;
             }
+            document.body.style.overflow='hidden';
         }
         remove=()=>{
+            document.body.style.overflow='auto';
             if(this.isShow){
                 this.isShow=false;
                 this.options.removeCallback&&this.options.removeCallback();
