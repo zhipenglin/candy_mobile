@@ -378,8 +378,8 @@ ReactDOM.render(<div>
         <SelectDateField name="date" label="出生日期"></SelectDateField>
         <SelectDateTimeField name="date_time" label="报名时间"></SelectDateTimeField>
         <SelectTimeField name="time" label="开始时间"></SelectTimeField>
-        <CheckList name="eat" label="吃的" value="牛奶">{['牛奶','香蕉']}</CheckList>
-        <CheckList name="like" label="爱好" mult value={['游戏']}>{['游戏','睡觉']}</CheckList>
+        <CheckList name="eat" label="吃的" value="牛奶">{[{value:1,text:'牛奶'},{value:2,text:'香蕉'}]}</CheckList>
+        <CheckList name="like" label="爱好" mult value={[1]}>{[{value:1,text:'游戏'},{value:2,text:'睡觉'}]}</CheckList>
         <SubmitButton>提交</SubmitButton>
     </Form>
 </div>,document.querySelector('.s-form-input'));

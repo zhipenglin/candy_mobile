@@ -1,5 +1,6 @@
 import React,{PureComponent} from 'react'
 import classnames from 'classnames'
+import _ from 'lodash'
 import List from '../List'
 import ListItem from '../List/ListItem'
 import {compose} from 'recompose'
@@ -66,7 +67,7 @@ export default class CheckList extends PureComponent{
                     "candy-mob-check-list__item--checked":checked
                 })} onClick={
                     this.itemOnClick(item.value,checked)
-                } key={item.value} icon={<i className="icon"></i>}>
+                } key={item.value} icon={<i className="icon "></i>}>
                     {item.text}
                 </ListItem>
             });
@@ -84,9 +85,23 @@ export default class CheckList extends PureComponent{
         }
     }
     valueToString(){
-        const {mult,value}=this.props;
-        if(value&&value.length>0){
-            return mult?value.join(','):value;
+        const {mult,value,children}=this.props;
+        var getText=(item)=>{
+            let target=children.find((child)=>{
+                return ((typeof child=='string')?child:child.value)==item;
+            });
+            if(target){
+                return (typeof target=='string')?target:target.text;
+            }
+        }
+        if(mult){
+            if(value&&value.length>0){
+                return _(value).map((item)=>getText(item)).compact().join(',');
+            }
+        }else{
+            if(value!==undefined){
+                return getText(value);
+            }
         }
     }
     listClickHandler(){

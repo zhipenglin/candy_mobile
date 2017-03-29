@@ -17,8 +17,11 @@
     content:normal;
   }
   &__item {
-    .#{$listItem}__media{
-      padding: 0;
+    &.#{$listItem}{
+      background-color: transparent;
+      &__media{
+        padding: 0;
+      }
     }
     &--checked{
       .#{$button}{
