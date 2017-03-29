@@ -1,10 +1,10 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import classnames from 'classnames'
 import Wave from '../Wave'
 import Touch from '../Touch'
 import '../../style/Buttton/style.scss'
 
-export default class Button extends Component{
+export default class Button extends PureComponent{
     state={
         press:false
     }

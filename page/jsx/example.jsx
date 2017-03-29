@@ -3,7 +3,12 @@
  */
 import React,{Component} from 'react'
 import ReactDOM from 'react-dom'
-import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate,SelectDateTime,SelectTime,Form,Input,SubmitButton,SelectField,SwitchField} from '../../src/index'
+import {Button,Toast,Confirm,Action,Drawer,List,ListItem,Select,SelectDate,SelectDateTime,SelectTime,Form,Input,SubmitButton,SelectField,SwitchField,SelectDateField,SelectDateTimeField,SelectTimeField,CheckList} from '../../src/index'
+
+import Perf from 'react-addons-perf'
+
+window.Perf=Perf;
+
 
 ReactDOM.render(<Button onClick={function(){console.log('click!');}}>普通按钮</Button>,document.querySelector('.s-button-normal'));
 ReactDOM.render(<Button onClick={function(){console.log('click!');}} disabled>禁用普通按钮</Button>,document.querySelector('.s-button-normal-disabled'));
@@ -360,7 +365,7 @@ ReactDOM.render(<div>
 </div>,document.querySelector('.s-select-datetime'));
 
 ReactDOM.render(<div>
-    <Form>
+    <Form inline>
         <Input name="name" rule="req email" label="用户名" placeholder="请输入用户名"/>
         <div>
             <Input name="tel" rule="req tel" label="手机号" placeholder="请输入手机号"/>
@@ -370,7 +375,11 @@ ReactDOM.render(<div>
         <SelectField name="select" label="多项选择" rule="req">{[['选项1','选项2','选项3','选项4'],['选项1','选项2','选项3','选项4']]}</SelectField>
         <SelectField name="select2" label="选择" placeholder="请选择一项">{['选项1','选项2','选项3','选项4']}</SelectField>
         <SwitchField name="sex" label="性别" openLabel="男" closeLabel="女"></SwitchField>
+        <SelectDateField name="date" label="出生日期"></SelectDateField>
+        <SelectDateTimeField name="date_time" label="报名时间"></SelectDateTimeField>
+        <SelectTimeField name="time" label="开始时间"></SelectTimeField>
+        <CheckList name="eat" label="吃的" value="牛奶">{['牛奶','香蕉']}</CheckList>
+        <CheckList name="like" label="爱好" mult value={['游戏']}>{['游戏','睡觉']}</CheckList>
         <SubmitButton>提交</SubmitButton>
     </Form>
 </div>,document.querySelector('.s-form-input'));
-

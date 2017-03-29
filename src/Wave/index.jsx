@@ -2,7 +2,7 @@
  * Created by ifchangetoclzp on 2016/10/24.
  */
 import classnames from 'classnames'
-import React,{Component,PropTypes,cloneElement} from 'react'
+import React,{PureComponent,PropTypes,cloneElement} from 'react'
 import ReactDOM from 'react-dom'
 import ReactTransitionGroup from 'react/lib/ReactTransitionGroup'
 import CircleRipple from './CircleRipple'
@@ -13,7 +13,7 @@ const shift = ([, ...newArray]) => newArray;
 const calcDiag=(a,b)=>{
     return Math.sqrt((a*a)+(b*b));
 };
-export default class Wave extends Component {
+export default class Wave extends PureComponent {
     static propTypes={
         centerRipple:PropTypes.bool,
         abortOnScroll:PropTypes.bool,

@@ -1,7 +1,7 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import Button from './index'
 
-export default class LoadingButton extends Component{
+export default class LoadingButton extends PureComponent{
 	static defaultProps={
         loadingText:'正在加载...%s%'
     }

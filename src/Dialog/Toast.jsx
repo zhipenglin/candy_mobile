@@ -1,10 +1,10 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import classnames from 'classnames'
 import layer from '../higherOrder/layerTouchClose'
 import '../../style/Dialog/toast.scss'
 
 @layer
-export default class Toast extends Component{
+export default class Toast extends PureComponent{
     static defaultProps={
         type:'error',
         time:2000

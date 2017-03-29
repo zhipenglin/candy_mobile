@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 import dom from '../fn/dom'
@@ -8,7 +8,7 @@ import raf,{cancelRaf} from '../fn/raf'
 import '../../style/Scroll/style.scss'
 
 
-export default class Scroll extends Component{
+export default class Scroll extends PureComponent{
     static defaultProps={
         onScroll(){},
         onMove(){},

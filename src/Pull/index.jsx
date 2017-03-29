@@ -1,9 +1,9 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import classnames from 'classnames'
 import Scroll from '../Scroll'
 import '../../style/Pull/style.scss'
 
-export default class Pull extends Component{
+export default class Pull extends PureComponent{
     static defaultProps={
         upLoad(){},
         downLoad(){},

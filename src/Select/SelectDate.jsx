@@ -6,7 +6,7 @@ import Select from './index'
 
 export class SelectDateCore extends Select{
     constructor(options){
-        var {start,end,current,onChange,yearDisplay,monthDisplay,dayDisplay,timeDisplay,title}=Object.assign({},{
+        var {start,end,current,onChange,yearDisplay,monthDisplay,dayDisplay,timeDisplay,title,...others}=Object.assign({},{
             start:'1949-10-01 0:00',
             end:'2050-12-31 23:59',
             yearDisplay:true,
@@ -68,10 +68,10 @@ export class SelectDateCore extends Select{
             defaultValue:current.getMinutes()
         }],{
             title:title,
-            onChange:(value)=>{
+            onChange:(value,...others)=>{
                 value[1]-=1;
-                onChange(new Date(...value));
-            }
+                onChange(new Date(...value),...others);
+            },...others
         });
     }
     static getMinute([year,month,day,hour],start,end){
@@ -196,17 +196,15 @@ export class SelectDateCore extends Select{
 export default class SelectDate extends SelectDateCore{
     constructor(options){
         super(Object.assign({},options,{
-            start:'',
-            end:'',
             yearDisplay:true,
             monthDisplay:true,
             timeDisplay:false,
-            onChange(value){
+            onChange(value,...others){
                 var fmt='yyyy-MM-dd';
                 if(options.dayDisplay===false){
                     fmt='yyyy-MM';
                 }
-                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,fmt));
+                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,fmt),...others);
             }
         }));
     }
@@ -219,8 +217,8 @@ export class SelectDateTime extends SelectDateCore{
             monthDisplay:true,
             dayDisplay:true,
             timeDisplay:true,
-            onChange(value){
-                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,'yyyy-MM-dd hh:mm'));
+            onChange(value,...others){
+                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,'yyyy-MM-dd hh:mm'),...others);
             }
         }));
     }
@@ -233,8 +231,8 @@ export class SelectTime extends SelectDateCore{
             monthDisplay:false,
             dayDisplay:false,
             timeDisplay:true,
-            onChange(value){
-                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,'hh:mm'));
+            onChange(value,...others){
+                options.onChange&&options.onChange(SelectDateCore.dateFormat(value,'hh:mm'),...others);
             }
         }));
     }

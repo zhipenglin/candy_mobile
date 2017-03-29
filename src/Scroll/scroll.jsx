@@ -1,11 +1,11 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import ReactDOM from 'react-dom'
 import classnames from 'classnames'
 import Touch from '../Touch'
 import raf,{cancelRaf} from '../fn/raf'
 import '../../style/Scroll/style.scss'
 
-export default class Scroll extends Component{
+export default class Scroll extends PureComponent{
     state={
         deltaX:0,
         deltaY:0,

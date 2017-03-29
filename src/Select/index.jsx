@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import classnames from 'classnames'
 import {pure} from 'recompose'
 import find from 'lodash/find'
@@ -81,7 +81,7 @@ export function dataFormat(data){
 }
 
 @layer
-export default class Select extends Component{
+export default class Select extends PureComponent{
     state={data:[]}
     constructor(){
         super();
@@ -128,7 +128,7 @@ export default class Select extends Component{
         });
         return (
             <div className={classnames("candy-mob-select",className)}>
-                <div className="candy-mob-select__close" onClick={this.cancelClickHandler}></div>
+                <div className="candy-mob-select__close" onTouchStart={this.cancelClickHandler}></div>
                 <div className="candy-mob-select__inner">
                     <div className="candy-mob-select__title">
                         <Button type="ghost" size="mini" onClick={this.cancelClickHandler}>取消</Button>

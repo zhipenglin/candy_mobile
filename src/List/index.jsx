@@ -1,4 +1,4 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import classnames from 'classnames'
 import {pure,getDisplayName} from 'recompose'
 import ListItem from './ListItem'

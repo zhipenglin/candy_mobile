@@ -1,8 +1,8 @@
-import React,{Component} from 'react';
+import React,{PureComponent} from 'react';
 import classnames from 'classnames'
 import '../../style/Touch/style.scss'
 
-export default class Touch extends Component{
+export default class Touch extends PureComponent{
     static defaultProps={
         onTap(){},onMultipointStart(){},onLongTap(){},onTouchStart(){},onTouchEnd(){},onSwipe(){},onPinch(){},onRotate(){},onPressMove(){},onMultipointEnd(){},onDoubleTap(){}
     }

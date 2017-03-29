@@ -1,7 +1,7 @@
 /**
  * Created by ifchangetoclzp on 2016/12/15.
  */
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import classnames from 'classnames'
 import {pure} from 'recompose'
 import layer from '../higherOrder/layer'

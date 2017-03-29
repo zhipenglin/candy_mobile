@@ -31,20 +31,21 @@
     textarea{
       resize: none;
     }
-    .#{$selectField}{
+    .#{$selectField},.#{$checkList}__field{
       padding: 25px 6px;
       line-height:40px;
-      &__placeholder{
-        color:#999;
-      }
+    }
+    .#{$selectField}__placeholder,.#{$checkList}__placeholder{
+      color:#999;
     }
     &:before{
       content:'';
       display: block;
       position: absolute;
+      z-index: 1;
       bottom: 0;
       width: 100%;
-      height: 2PX;
+      height: 1PX;
       transform: scaleX(0);
       transition: transform 500ms cubic-bezier(0.23,1,0.32,1);
       background-color: #ff8831;

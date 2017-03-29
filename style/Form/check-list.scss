@@ -1,0 +1,67 @@
+@import "../name-space";
+@import "../fn";
+
+.#{$checkList}{
+  &-layer{
+    &:before{
+      background-color: transparent;
+    }
+  }
+  &--show{
+    .#{$checkList}__inner{
+      position: relative;
+      z-index: 1001;
+    }
+  }
+  .#{$button} .#{$listItem}__content:before{
+    content:normal;
+  }
+  &__item {
+    .#{$listItem}__media{
+      padding: 0;
+    }
+    &--checked{
+      .#{$button}{
+        color:#ff8831;
+      }
+      .icon{
+        &:after{
+          content:'';
+          display: block;
+          position: absolute;
+          width: 30px;
+          height: 30px;
+          background-color: #ff8831;
+          top:0px;
+          left: 0px;
+          transform: scale(0.7);
+          border-radius: 50%;
+        }
+      }
+    }
+    .icon{
+      display: block;
+      width: 30px;
+      height: 30px;
+      border: solid 4px #ff8831;
+      border-radius: 50%;
+      position: relative;
+    }
+  }
+  &--mult{
+    .#{$checkList}{
+      &__item{
+        &--checked{
+          .icon{
+            &:after{
+              border-radius: 0;
+            }
+          }
+        }
+        .icon{
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

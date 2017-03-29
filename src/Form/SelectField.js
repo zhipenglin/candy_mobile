@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import {compose} from 'recompose'
 import field from '../higherOrder/field'
 import fieldDecorator from '../higherOrder/fieldDecorator'
-import Select,{getDefault,dataFormat} from '../Select'
+import Select,{dataFormat} from '../Select'
 
 @compose(field,fieldDecorator)
 export default class SelectField extends PureComponent{
@@ -26,6 +26,9 @@ export default class SelectField extends PureComponent{
             onValueChange();
             onActiveChange();
         },persistent:true,...others});
+    }
+    componentWillUnmount(){
+        this.select.destroy();
     }
     clickHandler(){
         const {onActiveChange}=this.props;

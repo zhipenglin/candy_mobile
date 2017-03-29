@@ -1,7 +1,7 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 
 export default function(){
-    return class extends Component{
+    return class extends PureComponent{
         componentDidMount(){
             this.scrollElement=document.getElementById('#scroll-element')||document.body;
             this.scrollElement.addEventListener('onscroll',this._scrollEventHandler);

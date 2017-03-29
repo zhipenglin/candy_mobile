@@ -1,11 +1,11 @@
-import React,{Component} from 'react'
+import React,{PureComponent} from 'react'
 import classnames from 'classnames'
 import layer from '../higherOrder/layerTouchClose'
 import '../../style/Dialog/action.scss'
 import Button from '../Button'
 
 @layer
-export default class Action extends Component{
+export default class Action extends PureComponent{
     actionClickHandler=(callback)=>{
         const {remove}=this.props;
         if(typeof callback=='function'){

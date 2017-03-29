@@ -1,4 +1,4 @@
-import React,{Component,cloneElement} from 'react'
+import React,{PureComponent,cloneElement} from 'react'
 import classnames from 'classnames'
 import {pure,setDisplayName} from 'recompose'
 import Button from '../Button'
@@ -12,7 +12,7 @@ const Cover=layer(pure(({className,remove})=>{
 }));
 
 @setDisplayName('ListItem')
-export default class ListItem extends Component{
+export default class ListItem extends PureComponent{
     constructor(){
         super();
         this.state={
@@ -80,7 +80,7 @@ export default class ListItem extends Component{
             if(!this.state.menuChange){
                 style.transition='transform 300ms';
             }
-            return <div className="candy-mob-list_item__touch"  style={this.state.open?{zIndex:1000}:{}}>
+            return <div className="candy-mob-list_item__touch"  style={this.state.open?{zIndex:1001}:{}}>
                         {this.state.open?<div className="candy-mob-list_item__cover" style={style} onTouchStart={()=>{
                             this.closeMenu();
                         }}></div>:null}
